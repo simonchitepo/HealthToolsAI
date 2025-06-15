@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.coordinatorlayout.widget.CoordinatorLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/root"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:fitsSystemWindows="false"
+    android:background="@drawable/bg_zealth_dashboard">
+
+    <!-- APP BAR -->
+    <com.google.android.material.appbar.AppBarLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@android:color/transparent"
+        app:elevation="0dp">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:paddingStart="16dp"
+            android:paddingEnd="16dp"
+            android:paddingTop="14dp"
+            android:paddingBottom="10dp">
+
+            <com.google.android.material.appbar.MaterialToolbar
+                android:id="@+id/toolbar"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@android:color/transparent"
+                app:title="Health Tools AI"
+                app:subtitle="Wellness tools and nearby services"
+                app:titleTextColor="@color/zealth_primary"
+                app:subtitleTextColor="@color/zealth_on_surface_variant"
+                app:elevation="0dp" />
+
+            <!-- Search: flatter, modern surface (no heavy elevation) -->
+            <com.google.android.material.card.MaterialCardView
+                android:id="@+id/searchContainer"
+                android:layout_width="match_parent"
+                android:layout_height="52dp"
+                android:layout_marginTop="10dp"
+                app:cardCornerRadius="16dp"
+                app:cardElevation="0dp"
+                app:cardUseCompatPadding="false"
+                app:cardBackgroundColor="@color/zealth_search_bg"
+                app:strokeWidth="1dp"
+                app:strokeColor="@color/zealth_outline_soft">
+
+                <androidx.appcompat.widget.SearchView
+                    android:id="@+id/searchView"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:background="@android:color/transparent"
+                    app:queryHint="Search wellness tools..."
+                    app:iconifiedByDefault="false"
+                    app:queryBackground="@android:color/transparent" />
+            </com.google.android.material.card.MaterialCardView>
+
+            <!-- Lightweight, always-visible disclaimer strip (non-clinical framing) -->
+            <com.google.android.material.card.MaterialCardView
+                android:id="@+id/disclaimerContainer"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                app:cardCornerRadius="14dp"
+                app:cardElevation="0dp"
+                app:cardUseCompatPadding="false"
+                app:cardBackgroundColor="@color/zealth_search_bg"
+                app:strokeWidth="1dp"
+                app:strokeColor="@color/zealth_outline_soft">
+
+                <TextView
+                    android:id="@+id/txtDisclaimer"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:paddingStart="14dp"
+                    android:paddingEnd="14dp"
+                    android:paddingTop="10dp"
+                    android:paddingBottom="10dp"
+                    android:text="General wellness only. Not medical advice. For urgent concerns, contact local emergency services."
+                    android:textSize="12sp"
+                    android:textColor="@color/zealth_on_surface_variant"
+                    android:lineSpacingExtra="2dp" />
+            </com.google.android.material.card.MaterialCardView>
+
+        </LinearLayout>
+    </com.google.android.material.appbar.AppBarLayout>
+
+    <!-- TILE GRID -->
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/recyclerDashboard"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:clipToPadding="false"
+        android:paddingStart="16dp"
+        android:paddingEnd="16dp"
+        android:paddingTop="10dp"
+        android:paddingBottom="18dp"
+        android:background="@drawable/bg_dashboard_panel"
+        app:layout_behavior="@string/appbar_scrolling_view_behavior" />
+
+</androidx.coordinatorlayout.widget.CoordinatorLayout>

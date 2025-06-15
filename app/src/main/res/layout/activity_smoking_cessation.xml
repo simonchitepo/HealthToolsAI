@@ -1,0 +1,479 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/root"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:fitsSystemWindows="true"
+    android:background="#F4F6FF">
+
+    <!-- Optional background image (softened) -->
+    <ImageView
+        android:id="@+id/bgImage"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:src="@drawable/zealth_bg_smoking"
+        android:scaleType="centerCrop"
+        android:alpha="0.10"
+        android:contentDescription="@null" />
+
+    <!-- Light veil (replaces dark scrim) -->
+    <View
+        android:id="@+id/dimOverlay"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:alpha="0.88"
+        android:background="#FFFFFF" />
+
+    <!-- FOREGROUND -->
+    <androidx.coordinatorlayout.widget.CoordinatorLayout
+        android:id="@+id/contentRoot"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@android:color/transparent">
+
+        <!-- Toolbar in a rounded "sheet" card -->
+        <com.google.android.material.card.MaterialCardView
+            android:id="@+id/toolbarCard"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="12dp"
+            android:layout_marginEnd="16dp"
+            app:cardBackgroundColor="#FDFDFF"
+            app:cardCornerRadius="26dp"
+            app:cardElevation="8dp"
+            app:cardUseCompatPadding="true"
+            app:strokeColor="#E5E9F5"
+            app:strokeWidth="1dp">
+
+            <com.google.android.material.appbar.MaterialToolbar
+                android:id="@+id/toolbar"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@android:color/transparent"
+                app:title="Smoking Cessation"
+                app:subtitle="Quit plan, streak and savings"
+                app:titleTextColor="#111827"
+                app:subtitleTextColor="#6B7280"
+                app:navigationIcon="@drawable/ic_back_medical"
+                app:navigationIconTint="#111827"/>
+        </com.google.android.material.card.MaterialCardView>
+
+        <androidx.core.widget.NestedScrollView
+            android:id="@+id/scroll"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginTop="92dp"
+            android:fillViewport="true"
+            android:padding="16dp"
+            android:clipToPadding="false"
+            android:overScrollMode="never"
+            app:layout_behavior="@string/appbar_scrolling_view_behavior">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <!-- Setup Card -->
+                <com.google.android.material.card.MaterialCardView
+                    android:id="@+id/cardSetup"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    app:cardBackgroundColor="#FDFDFF"
+                    app:cardCornerRadius="26dp"
+                    app:cardElevation="8dp"
+                    app:cardUseCompatPadding="true"
+                    app:strokeColor="#E5E9F5"
+                    app:strokeWidth="1dp">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical"
+                        android:padding="16dp">
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="Quit plan"
+                            android:textStyle="bold"
+                            android:textColor="#111827"
+                            android:textSize="15sp"/>
+
+                        <!-- Quit date (pill) -->
+                        <com.google.android.material.button.MaterialButton
+                            android:id="@+id/btnPickQuitDate"
+                            android:layout_width="match_parent"
+                            android:layout_height="52dp"
+                            android:layout_marginTop="12dp"
+                            android:text="Quit date: Not set"
+                            android:textAllCaps="false"
+                            android:textStyle="bold"
+                            android:textColor="#1E3A8A"
+                            app:backgroundTint="#DDEBFF"
+                            app:cornerRadius="999dp"
+                            app:elevation="0dp"
+                            app:rippleColor="#22000000"
+                            app:strokeColor="#A7C5FF"
+                            app:strokeWidth="1dp"
+                            android:insetLeft="0dp"
+                            android:insetRight="0dp"
+                            android:insetTop="0dp"
+                            android:insetBottom="0dp"/>
+
+                        <!-- Inputs (light outlined fields) -->
+                        <com.google.android.material.textfield.TextInputLayout
+                            android:id="@+id/tilCigsPerDay"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="12dp"
+                            android:hint="Cigarettes per day"
+                            app:boxBackgroundMode="outline"
+                            app:boxBackgroundColor="#FFFFFF"
+                            app:boxStrokeColor="#D5DAE6"
+                            app:boxStrokeWidth="1dp"
+                            app:boxStrokeWidthFocused="1dp"
+                            app:hintTextColor="#9CA3AF"
+                            app:boxCornerRadiusTopStart="20dp"
+                            app:boxCornerRadiusTopEnd="20dp"
+                            app:boxCornerRadiusBottomStart="20dp"
+                            app:boxCornerRadiusBottomEnd="20dp">
+
+                            <com.google.android.material.textfield.TextInputEditText
+                                android:id="@+id/etCigsPerDay"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:background="@android:color/transparent"
+                                android:inputType="number"
+                                android:paddingTop="14dp"
+                                android:paddingBottom="14dp"
+                                android:paddingStart="14dp"
+                                android:paddingEnd="14dp"
+                                android:textColor="#111827"
+                                android:textColorHint="#9CA3AF"/>
+                        </com.google.android.material.textfield.TextInputLayout>
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="12dp"
+                            android:orientation="horizontal">
+
+                            <com.google.android.material.textfield.TextInputLayout
+                                android:id="@+id/tilCostPerPack"
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="1"
+                                android:hint="Cost per pack"
+                                app:boxBackgroundMode="outline"
+                                app:boxBackgroundColor="#FFFFFF"
+                                app:boxStrokeColor="#D5DAE6"
+                                app:boxStrokeWidth="1dp"
+                                app:boxStrokeWidthFocused="1dp"
+                                app:hintTextColor="#9CA3AF"
+                                app:boxCornerRadiusTopStart="20dp"
+                                app:boxCornerRadiusTopEnd="20dp"
+                                app:boxCornerRadiusBottomStart="20dp"
+                                app:boxCornerRadiusBottomEnd="20dp">
+
+                                <com.google.android.material.textfield.TextInputEditText
+                                    android:id="@+id/etCostPerPack"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:background="@android:color/transparent"
+                                    android:inputType="numberDecimal"
+                                    android:paddingTop="14dp"
+                                    android:paddingBottom="14dp"
+                                    android:paddingStart="14dp"
+                                    android:paddingEnd="14dp"
+                                    android:textColor="#111827"
+                                    android:textColorHint="#9CA3AF"/>
+                            </com.google.android.material.textfield.TextInputLayout>
+
+                            <Space
+                                android:layout_width="10dp"
+                                android:layout_height="1dp"/>
+
+                            <com.google.android.material.textfield.TextInputLayout
+                                android:id="@+id/tilCigsPerPack"
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="1"
+                                android:hint="Cigs per pack"
+                                app:boxBackgroundMode="outline"
+                                app:boxBackgroundColor="#FFFFFF"
+                                app:boxStrokeColor="#D5DAE6"
+                                app:boxStrokeWidth="1dp"
+                                app:boxStrokeWidthFocused="1dp"
+                                app:hintTextColor="#9CA3AF"
+                                app:boxCornerRadiusTopStart="20dp"
+                                app:boxCornerRadiusTopEnd="20dp"
+                                app:boxCornerRadiusBottomStart="20dp"
+                                app:boxCornerRadiusBottomEnd="20dp">
+
+                                <com.google.android.material.textfield.TextInputEditText
+                                    android:id="@+id/etCigsPerPack"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:background="@android:color/transparent"
+                                    android:inputType="number"
+                                    android:paddingTop="14dp"
+                                    android:paddingBottom="14dp"
+                                    android:paddingStart="14dp"
+                                    android:paddingEnd="14dp"
+                                    android:textColor="#111827"
+                                    android:textColorHint="#9CA3AF"/>
+                            </com.google.android.material.textfield.TextInputLayout>
+
+                        </LinearLayout>
+
+                        <!-- Save plan (pill) -->
+                        <com.google.android.material.button.MaterialButton
+                            android:id="@+id/btnSavePlan"
+                            android:layout_width="match_parent"
+                            android:layout_height="56dp"
+                            android:layout_marginTop="12dp"
+                            android:text="Save plan"
+                            android:textAllCaps="false"
+                            android:textStyle="bold"
+                            android:textColor="#1E3A8A"
+                            app:backgroundTint="#DDEBFF"
+                            app:cornerRadius="999dp"
+                            app:elevation="0dp"
+                            app:rippleColor="#22000000"
+                            app:strokeColor="#A7C5FF"
+                            app:strokeWidth="1dp"
+                            android:insetLeft="0dp"
+                            android:insetRight="0dp"
+                            android:insetTop="0dp"
+                            android:insetBottom="0dp"/>
+
+                    </LinearLayout>
+                </com.google.android.material.card.MaterialCardView>
+
+                <!-- Progress Card -->
+                <com.google.android.material.card.MaterialCardView
+                    android:id="@+id/cardProgress"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="12dp"
+                    app:cardBackgroundColor="#FDFDFF"
+                    app:cardCornerRadius="26dp"
+                    app:cardElevation="8dp"
+                    app:cardUseCompatPadding="true"
+                    app:strokeColor="#E5E9F5"
+                    app:strokeWidth="1dp">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical"
+                        android:padding="16dp">
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="Progress"
+                            android:textStyle="bold"
+                            android:textColor="#111827"
+                            android:textSize="15sp"/>
+
+                        <TextView
+                            android:id="@+id/tvStreak"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="10dp"
+                            android:text="Streak: —"
+                            android:textColor="#374151"
+                            android:textSize="14sp"/>
+
+                        <TextView
+                            android:id="@+id/tvSmokeFreeTime"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="6dp"
+                            android:text="Smoke-free time: —"
+                            android:textColor="#374151"
+                            android:textSize="14sp"/>
+
+                        <TextView
+                            android:id="@+id/tvSavings"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="6dp"
+                            android:text="Estimated savings: —"
+                            android:textColor="#374151"
+                            android:textSize="14sp"
+                            android:lineSpacingExtra="2dp"/>
+                    </LinearLayout>
+                </com.google.android.material.card.MaterialCardView>
+
+                <!-- Cravings Card -->
+                <com.google.android.material.card.MaterialCardView
+                    android:id="@+id/cardCravings"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="12dp"
+                    app:cardBackgroundColor="#FDFDFF"
+                    app:cardCornerRadius="26dp"
+                    app:cardElevation="8dp"
+                    app:cardUseCompatPadding="true"
+                    app:strokeColor="#E5E9F5"
+                    app:strokeWidth="1dp">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical"
+                        android:padding="16dp">
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="Cravings log"
+                            android:textStyle="bold"
+                            android:textColor="#111827"
+                            android:textSize="15sp"/>
+
+                        <TextView
+                            android:id="@+id/tvCravingIntensity"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="10dp"
+                            android:text="Intensity: 3 / 5"
+                            android:textColor="#6B7280"
+                            android:textSize="13sp"/>
+
+                        <SeekBar
+                            android:id="@+id/seekCraving"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="6dp"
+                            android:max="4"
+                            android:progress="2" />
+
+                        <com.google.android.material.textfield.TextInputLayout
+                            android:id="@+id/tilCravingNote"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="12dp"
+                            android:hint="Optional trigger note (where/why?)"
+                            app:boxBackgroundMode="outline"
+                            app:boxBackgroundColor="#FFFFFF"
+                            app:boxStrokeColor="#D5DAE6"
+                            app:boxStrokeWidth="1dp"
+                            app:boxStrokeWidthFocused="1dp"
+                            app:hintTextColor="#9CA3AF"
+                            app:boxCornerRadiusTopStart="20dp"
+                            app:boxCornerRadiusTopEnd="20dp"
+                            app:boxCornerRadiusBottomStart="20dp"
+                            app:boxCornerRadiusBottomEnd="20dp">
+
+                            <com.google.android.material.textfield.TextInputEditText
+                                android:id="@+id/etCravingNote"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:background="@android:color/transparent"
+                                android:minLines="2"
+                                android:gravity="top"
+                                android:inputType="textMultiLine"
+                                android:paddingTop="14dp"
+                                android:paddingBottom="14dp"
+                                android:paddingStart="14dp"
+                                android:paddingEnd="14dp"
+                                android:textColor="#111827"
+                                android:textColorHint="#9CA3AF"/>
+                        </com.google.android.material.textfield.TextInputLayout>
+
+                        <!-- Save craving (pill) -->
+                        <com.google.android.material.button.MaterialButton
+                            android:id="@+id/btnSaveCraving"
+                            android:layout_width="match_parent"
+                            android:layout_height="56dp"
+                            android:layout_marginTop="12dp"
+                            android:text="Save craving"
+                            android:textAllCaps="false"
+                            android:textStyle="bold"
+                            android:textColor="#1E3A8A"
+                            app:backgroundTint="#DDEBFF"
+                            app:cornerRadius="999dp"
+                            app:elevation="0dp"
+                            app:rippleColor="#22000000"
+                            app:strokeColor="#A7C5FF"
+                            app:strokeWidth="1dp"
+                            android:insetLeft="0dp"
+                            android:insetRight="0dp"
+                            android:insetTop="0dp"
+                            android:insetBottom="0dp"/>
+
+                    </LinearLayout>
+                </com.google.android.material.card.MaterialCardView>
+
+                <!-- History label -->
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="14dp"
+                    android:text="Cravings history"
+                    android:textStyle="bold"
+                    android:textSize="13sp"
+                    android:textColor="#6B7280"/>
+
+                <!-- History list inside a light card -->
+                <com.google.android.material.card.MaterialCardView
+                    android:id="@+id/cardHistory"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    app:cardBackgroundColor="#FDFDFF"
+                    app:cardCornerRadius="26dp"
+                    app:cardElevation="8dp"
+                    app:cardUseCompatPadding="true"
+                    app:strokeColor="#E5E9F5"
+                    app:strokeWidth="1dp">
+
+                    <androidx.recyclerview.widget.RecyclerView
+                        android:id="@+id/recyclerHistory"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:nestedScrollingEnabled="false"
+                        android:clipToPadding="false"
+                        android:paddingStart="12dp"
+                        android:paddingTop="10dp"
+                        android:paddingEnd="12dp"
+                        android:paddingBottom="10dp"/>
+                </com.google.android.material.card.MaterialCardView>
+
+                <!-- Reset all (pill) -->
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/btnClearAll"
+                    android:layout_width="match_parent"
+                    android:layout_height="52dp"
+                    android:layout_marginTop="12dp"
+                    android:text="Reset quit plan and logs"
+                    android:textAllCaps="false"
+                    android:textStyle="bold"
+                    android:textColor="#1E3A8A"
+                    app:backgroundTint="#DDEBFF"
+                    app:cornerRadius="999dp"
+                    app:elevation="0dp"
+                    app:rippleColor="#22000000"
+                    app:strokeColor="#A7C5FF"
+                    app:strokeWidth="1dp"
+                    android:insetLeft="0dp"
+                    android:insetRight="0dp"
+                    android:insetTop="0dp"
+                    android:insetBottom="0dp"/>
+
+                <Space
+                    android:layout_width="1dp"
+                    android:layout_height="18dp"/>
+            </LinearLayout>
+        </androidx.core.widget.NestedScrollView>
+
+    </androidx.coordinatorlayout.widget.CoordinatorLayout>
+
+</FrameLayout>

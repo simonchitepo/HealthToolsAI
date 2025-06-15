@@ -1,0 +1,1078 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/root"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:fitsSystemWindows="true"
+    android:background="#EEF6FF">
+
+    <!-- Optional background image (kept, softened) -->
+    <ImageView
+        android:id="@+id/bgImage"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:contentDescription="@null"
+        android:scaleType="centerCrop"
+        android:alpha="0.06"
+        android:src="@drawable/weight_bg" />
+
+    <!-- Soft blue-tinted veil -->
+    <View
+        android:id="@+id/dimOverlay"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:alpha="0.92"
+        android:background="#F7FBFF" />
+
+    <!-- Subtle top accent wash (blue) -->
+    <View
+        android:id="@+id/topAccentWash"
+        android:layout_width="match_parent"
+        android:layout_height="230dp"
+        android:layout_gravity="top"
+        android:alpha="0.22"
+        android:background="#3B82F6" />
+
+    <androidx.coordinatorlayout.widget.CoordinatorLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@android:color/transparent">
+
+        <!-- Top "sheet" (toolbar container) -->
+        <com.google.android.material.card.MaterialCardView
+            android:id="@+id/toolbarCard"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="12dp"
+            android:layout_marginEnd="16dp"
+            app:cardBackgroundColor="#F2F7FF"
+            app:cardCornerRadius="26dp"
+            app:cardElevation="10dp"
+            app:cardUseCompatPadding="true"
+            app:strokeColor="#9AC7E5FF"
+            app:strokeWidth="1dp">
+
+            <com.google.android.material.appbar.MaterialToolbar
+                android:id="@+id/toolbar"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@android:color/transparent"
+                app:title="Weight Goals"
+                app:subtitle="Targets, logs and progress"
+                app:titleTextColor="#0B1B3A"
+                app:subtitleTextColor="#2B5AA6"
+                app:navigationIcon="@drawable/ic_back_medical"
+                app:navigationIconTint="#2563EB" />
+        </com.google.android.material.card.MaterialCardView>
+
+        <androidx.core.widget.NestedScrollView
+            android:id="@+id/scrollView"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginTop="94dp"
+            android:fillViewport="true"
+            android:paddingStart="16dp"
+            android:paddingTop="12dp"
+            android:paddingEnd="16dp"
+            android:paddingBottom="16dp"
+            android:clipToPadding="false"
+            android:overScrollMode="never"
+            app:layout_behavior="@string/appbar_scrolling_view_behavior">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <!-- Goal settings (CARD) -->
+                <com.google.android.material.card.MaterialCardView
+                    android:id="@+id/cardGoal"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    app:cardBackgroundColor="#FFFFFF"
+                    app:cardCornerRadius="26dp"
+                    app:cardElevation="10dp"
+                    app:cardUseCompatPadding="true"
+                    app:strokeColor="#9AC7E5FF"
+                    app:strokeWidth="1dp">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:padding="16dp"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="Goal"
+                            android:textStyle="bold"
+                            android:textColor="#0B1B3A"
+                            android:textSize="15sp" />
+
+                        <com.google.android.material.textfield.TextInputLayout
+                            android:id="@+id/tilStartWeight"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="12dp"
+                            android:hint="Start weight (kg)"
+                            app:boxBackgroundColor="#F7FBFF"
+                            app:boxBackgroundMode="outline"
+                            app:boxCornerRadiusTopStart="20dp"
+                            app:boxCornerRadiusTopEnd="20dp"
+                            app:boxCornerRadiusBottomStart="20dp"
+                            app:boxCornerRadiusBottomEnd="20dp"
+                            app:boxStrokeColor="#93C5FD"
+                            app:boxStrokeWidth="1dp"
+                            app:boxStrokeWidthFocused="2dp"
+                            app:hintTextColor="#3B82F6"
+                            app:helperText="Your starting weight for this goal"
+                            app:helperTextTextColor="#2B5AA6">
+
+                            <com.google.android.material.textfield.TextInputEditText
+                                android:id="@+id/etStartWeight"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:background="@android:color/transparent"
+                                android:inputType="numberDecimal"
+                                android:paddingStart="14dp"
+                                android:paddingTop="14dp"
+                                android:paddingEnd="14dp"
+                                android:paddingBottom="14dp"
+                                android:textColor="#0B1B3A"
+                                android:textColorHint="#7AA7E8" />
+                        </com.google.android.material.textfield.TextInputLayout>
+
+                        <com.google.android.material.textfield.TextInputLayout
+                            android:id="@+id/tilTargetWeight"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="12dp"
+                            android:hint="Target weight (kg)"
+                            app:boxBackgroundColor="#F7FBFF"
+                            app:boxBackgroundMode="outline"
+                            app:boxCornerRadiusTopStart="20dp"
+                            app:boxCornerRadiusTopEnd="20dp"
+                            app:boxCornerRadiusBottomStart="20dp"
+                            app:boxCornerRadiusBottomEnd="20dp"
+                            app:boxStrokeColor="#60A5FA"
+                            app:boxStrokeWidth="1dp"
+                            app:boxStrokeWidthFocused="2dp"
+                            app:hintTextColor="#2563EB"
+                            app:helperText="The weight you want to reach"
+                            app:helperTextTextColor="#2B5AA6">
+
+                            <com.google.android.material.textfield.TextInputEditText
+                                android:id="@+id/etTargetWeight"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:background="@android:color/transparent"
+                                android:inputType="numberDecimal"
+                                android:paddingStart="14dp"
+                                android:paddingTop="14dp"
+                                android:paddingEnd="14dp"
+                                android:paddingBottom="14dp"
+                                android:textColor="#0B1B3A"
+                                android:textColorHint="#7AA7E8" />
+                        </com.google.android.material.textfield.TextInputLayout>
+
+                        <!-- Target date (PILL OUTLINE) -->
+                        <com.google.android.material.button.MaterialButton
+                            android:id="@+id/btnPickTargetDate"
+                            style="?attr/materialButtonOutlinedStyle"
+                            android:layout_width="match_parent"
+                            android:layout_height="52dp"
+                            android:layout_marginTop="12dp"
+                            android:text="Target date: Not set"
+                            android:textAllCaps="false"
+                            android:textStyle="bold"
+                            android:textColor="#2563EB"
+                            app:cornerRadius="999dp"
+                            app:strokeColor="#60A5FA"
+                            app:strokeWidth="1dp"
+                            app:rippleColor="#223B82F6" />
+
+                        <!-- Save goal (PRIMARY PILL) -->
+                        <com.google.android.material.button.MaterialButton
+                            android:id="@+id/btnSaveGoal"
+                            android:layout_width="match_parent"
+                            android:layout_height="56dp"
+                            android:layout_marginTop="12dp"
+                            android:text="Save goal"
+                            android:textAllCaps="false"
+                            android:textStyle="bold"
+                            android:textColor="#FFFFFF"
+                            app:backgroundTint="#2563EB"
+                            app:cornerRadius="999dp"
+                            app:rippleColor="#22FFFFFF"
+                            app:strokeColor="#60A5FA"
+                            app:strokeWidth="1dp" />
+
+                    </LinearLayout>
+                </com.google.android.material.card.MaterialCardView>
+
+                <!-- Privacy (CARD) -->
+                <com.google.android.material.card.MaterialCardView
+                    android:id="@+id/cardPrivacy"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="12dp"
+                    app:cardBackgroundColor="#FFFFFF"
+                    app:cardCornerRadius="26dp"
+                    app:cardElevation="10dp"
+                    app:cardUseCompatPadding="true"
+                    app:strokeColor="#9AC7E5FF"
+                    app:strokeWidth="1dp">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:padding="16dp"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="Privacy"
+                            android:textStyle="bold"
+                            android:textColor="#0B1B3A"
+                            android:textSize="15sp" />
+
+                        <TextView
+                            android:id="@+id/tvPrivacyNote"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="6dp"
+                            android:text="Optional biometric lock keeps your personal logs private on this device."
+                            android:textColor="#2B5AA6"
+                            android:textSize="13sp"
+                            android:lineSpacingExtra="2dp" />
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="12dp"
+                            android:orientation="horizontal"
+                            android:gravity="center_vertical">
+
+                            <TextView
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="1"
+                                android:text="Biometric lock"
+                                android:textStyle="bold"
+                                android:textColor="#0B1B3A"
+                                android:textSize="14sp" />
+
+                            <com.google.android.material.switchmaterial.SwitchMaterial
+                                android:id="@+id/swBiometricLock"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="" />
+                        </LinearLayout>
+
+                    </LinearLayout>
+                </com.google.android.material.card.MaterialCardView>
+
+                <!-- Notifications (CARD) -->
+                <com.google.android.material.card.MaterialCardView
+                    android:id="@+id/cardNotifications"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="12dp"
+                    app:cardBackgroundColor="#FFFFFF"
+                    app:cardCornerRadius="26dp"
+                    app:cardElevation="10dp"
+                    app:cardUseCompatPadding="true"
+                    app:strokeColor="#9AC7E5FF"
+                    app:strokeWidth="1dp">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:padding="16dp"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="Notifications"
+                            android:textStyle="bold"
+                            android:textColor="#0B1B3A"
+                            android:textSize="15sp" />
+
+                        <TextView
+                            android:id="@+id/tvNotifNote"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="6dp"
+                            android:text="Optional reminders to help you stay consistent."
+                            android:textColor="#2B5AA6"
+                            android:textSize="13sp"
+                            android:lineSpacingExtra="2dp" />
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="12dp"
+                            android:orientation="horizontal"
+                            android:gravity="center_vertical">
+
+                            <TextView
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="1"
+                                android:text="Daily weigh-in reminder"
+                                android:textStyle="bold"
+                                android:textColor="#0B1B3A"
+                                android:textSize="14sp" />
+
+                            <com.google.android.material.switchmaterial.SwitchMaterial
+                                android:id="@+id/swReminder"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="" />
+                        </LinearLayout>
+
+                        <com.google.android.material.button.MaterialButton
+                            android:id="@+id/btnPickReminderTime"
+                            style="?attr/materialButtonOutlinedStyle"
+                            android:layout_width="match_parent"
+                            android:layout_height="52dp"
+                            android:layout_marginTop="12dp"
+                            android:text="Reminder time: 09:00"
+                            android:textAllCaps="false"
+                            android:textStyle="bold"
+                            android:textColor="#2563EB"
+                            app:cornerRadius="999dp"
+                            app:strokeColor="#60A5FA"
+                            app:strokeWidth="1dp"
+                            app:rippleColor="#223B82F6" />
+
+                    </LinearLayout>
+                </com.google.android.material.card.MaterialCardView>
+
+                <!-- Progress (CARD) -->
+                <com.google.android.material.card.MaterialCardView
+                    android:id="@+id/cardProgress"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="12dp"
+                    app:cardBackgroundColor="#FFFFFF"
+                    app:cardCornerRadius="26dp"
+                    app:cardElevation="10dp"
+                    app:cardUseCompatPadding="true"
+                    app:strokeColor="#9AC7E5FF"
+                    app:strokeWidth="1dp">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:padding="16dp"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="Progress"
+                            android:textStyle="bold"
+                            android:textColor="#0B1B3A"
+                            android:textSize="15sp" />
+
+                        <!-- Nudge (optional, shown by code) -->
+                        <TextView
+                            android:id="@+id/tvNudge"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="10dp"
+                            android:paddingStart="12dp"
+                            android:paddingTop="10dp"
+                            android:paddingEnd="12dp"
+                            android:paddingBottom="10dp"
+                            android:textColor="#B45309"
+                            android:textSize="13sp"
+                            android:lineSpacingExtra="2dp"
+                            android:visibility="gone"
+                            android:background="#FFFBEB" />
+
+                        <com.google.android.material.button.MaterialButton
+                            android:id="@+id/btnNudgeAction"
+                            style="?attr/materialButtonOutlinedStyle"
+                            android:layout_width="match_parent"
+                            android:layout_height="52dp"
+                            android:layout_marginTop="8dp"
+                            android:text="Adjust target date"
+                            android:textAllCaps="false"
+                            android:textStyle="bold"
+                            android:textColor="#2563EB"
+                            android:visibility="gone"
+                            app:cornerRadius="999dp"
+                            app:strokeColor="#60A5FA"
+                            app:strokeWidth="1dp"
+                            app:rippleColor="#223B82F6" />
+
+                        <TextView
+                            android:id="@+id/tvProgressSummary"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="8dp"
+                            android:text="Set a goal to see progress."
+                            android:textColor="#2B5AA6"
+                            android:textSize="14sp"
+                            android:lineSpacingExtra="2dp" />
+
+                        <com.google.android.material.progressindicator.LinearProgressIndicator
+                            android:id="@+id/progressBar"
+                            android:layout_width="match_parent"
+                            android:layout_height="10dp"
+                            android:layout_marginTop="10dp"
+                            android:max="100"
+                            android:progress="0"
+                            app:trackCornerRadius="8dp"
+                            app:indicatorColor="#2563EB"
+                            app:trackColor="#C7DAFF" />
+
+                        <TextView
+                            android:id="@+id/tvProgressPercent"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="6dp"
+                            android:text="0%"
+                            android:textStyle="bold"
+                            android:textColor="#2563EB"
+                            android:textSize="13sp" />
+
+                        <!-- Trend chart placeholder (custom View in code) -->
+                        <com.cypher.zealth.WeightGoalsActivity.TrendLineView
+                            android:id="@+id/trendView"
+                            android:layout_width="match_parent"
+                            android:layout_height="140dp"
+                            android:layout_marginTop="12dp" />
+
+                        <!-- Milestones -->
+                        <TextView
+                            android:id="@+id/tvBadgesTitle"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="12dp"
+                            android:text="Milestones"
+                            android:textStyle="bold"
+                            android:textColor="#0B1B3A"
+                            android:textSize="13.5sp" />
+
+                        <LinearLayout
+                            android:id="@+id/badgesWrap"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="8dp"
+                            android:orientation="vertical" />
+
+                    </LinearLayout>
+                </com.google.android.material.card.MaterialCardView>
+
+                <!-- Nutrition estimates (CARD) -->
+                <com.google.android.material.card.MaterialCardView
+                    android:id="@+id/cardNutrition"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="12dp"
+                    app:cardBackgroundColor="#FFFFFF"
+                    app:cardCornerRadius="26dp"
+                    app:cardElevation="10dp"
+                    app:cardUseCompatPadding="true"
+                    app:strokeColor="#9AC7E5FF"
+                    app:strokeWidth="1dp">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:padding="16dp"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="Nutrition estimates"
+                            android:textStyle="bold"
+                            android:textColor="#0B1B3A"
+                            android:textSize="15sp" />
+
+                        <TextView
+                            android:id="@+id/tvNutritionNote"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="6dp"
+                            android:text="Optional calculator for personal reference. Estimates are based on your inputs."
+                            android:textColor="#2B5AA6"
+                            android:textSize="13sp"
+                            android:lineSpacingExtra="2dp" />
+
+                        <!-- Sex row -->
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="12dp"
+                            android:orientation="horizontal"
+                            android:gravity="center_vertical">
+
+                            <TextView
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="1"
+                                android:text="Sex"
+                                android:textStyle="bold"
+                                android:textColor="#0B1B3A"
+                                android:textSize="13.5sp" />
+
+                            <com.google.android.material.button.MaterialButton
+                                android:id="@+id/btnSexMale"
+                                style="?attr/materialButtonOutlinedStyle"
+                                android:layout_width="80dp"
+                                android:layout_height="34dp"
+                                android:text="Male"
+                                android:textAllCaps="false"
+                                android:textStyle="bold"
+                                android:textSize="9sp"
+                                android:textColor="#2563EB"
+                                app:cornerRadius="16dp"
+                                app:strokeColor="#2E2563EB"
+                                app:strokeWidth="1dp" />
+
+                            <Space
+                                android:layout_width="10dp"
+                                android:layout_height="1dp" />
+
+                            <com.google.android.material.button.MaterialButton
+                                android:id="@+id/btnSexFemale"
+                                style="?attr/materialButtonOutlinedStyle"
+                                android:layout_width="80dp"
+                                android:layout_height="34dp"
+                                android:text="Female"
+                                android:textAllCaps="false"
+                                android:textStyle="bold"
+                                android:textSize="9sp"
+                                android:textColor="#2563EB"
+                                app:cornerRadius="16dp"
+                                app:strokeColor="#2E2563EB"
+                                app:strokeWidth="1dp" />
+                        </LinearLayout>
+
+                        <com.google.android.material.textfield.TextInputLayout
+                            android:id="@+id/tilAge"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="12dp"
+                            android:hint="Age (years)"
+                            app:boxBackgroundColor="#F7FBFF"
+                            app:boxBackgroundMode="outline"
+                            app:boxCornerRadiusTopStart="20dp"
+                            app:boxCornerRadiusTopEnd="20dp"
+                            app:boxCornerRadiusBottomStart="20dp"
+                            app:boxCornerRadiusBottomEnd="20dp"
+                            app:boxStrokeColor="#93C5FD"
+                            app:boxStrokeWidth="1dp"
+                            app:boxStrokeWidthFocused="2dp"
+                            app:hintTextColor="#3B82F6">
+
+                            <com.google.android.material.textfield.TextInputEditText
+                                android:id="@+id/etAge"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:background="@android:color/transparent"
+                                android:inputType="number"
+                                android:paddingStart="14dp"
+                                android:paddingTop="14dp"
+                                android:paddingEnd="14dp"
+                                android:paddingBottom="14dp"
+                                android:textColor="#0B1B3A"
+                                android:textColorHint="#7AA7E8" />
+                        </com.google.android.material.textfield.TextInputLayout>
+
+                        <com.google.android.material.textfield.TextInputLayout
+                            android:id="@+id/tilHeight"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="12dp"
+                            android:hint="Height (cm)"
+                            app:boxBackgroundColor="#F7FBFF"
+                            app:boxBackgroundMode="outline"
+                            app:boxCornerRadiusTopStart="20dp"
+                            app:boxCornerRadiusTopEnd="20dp"
+                            app:boxCornerRadiusBottomStart="20dp"
+                            app:boxCornerRadiusBottomEnd="20dp"
+                            app:boxStrokeColor="#93C5FD"
+                            app:boxStrokeWidth="1dp"
+                            app:boxStrokeWidthFocused="2dp"
+                            app:hintTextColor="#3B82F6">
+
+                            <com.google.android.material.textfield.TextInputEditText
+                                android:id="@+id/etHeight"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:background="@android:color/transparent"
+                                android:inputType="number"
+                                android:paddingStart="14dp"
+                                android:paddingTop="14dp"
+                                android:paddingEnd="14dp"
+                                android:paddingBottom="14dp"
+                                android:textColor="#0B1B3A"
+                                android:textColorHint="#7AA7E8" />
+                        </com.google.android.material.textfield.TextInputLayout>
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="12dp"
+                            android:text="Activity"
+                            android:textStyle="bold"
+                            android:textColor="#0B1B3A"
+                            android:textSize="13.5sp" />
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="10dp"
+                            android:orientation="horizontal">
+
+                            <com.google.android.material.button.MaterialButton
+                                android:id="@+id/btnActSed"
+                                style="?attr/materialButtonOutlinedStyle"
+                                android:layout_width="0dp"
+                                android:layout_height="34dp"
+                                android:layout_weight="1"
+                                android:text="Sedentary"
+                                android:textAllCaps="false"
+                                android:textStyle="bold"
+                                android:textSize="9sp"
+                                android:textColor="#2563EB"
+                                app:cornerRadius="16dp"
+                                app:strokeColor="#2E2563EB"
+                                app:strokeWidth="1dp" />
+
+                            <Space
+                                android:layout_width="10dp"
+                                android:layout_height="1dp" />
+
+                            <com.google.android.material.button.MaterialButton
+                                android:id="@+id/btnActLight"
+                                style="?attr/materialButtonOutlinedStyle"
+                                android:layout_width="0dp"
+                                android:layout_height="34dp"
+                                android:layout_weight="1"
+                                android:text="Light"
+                                android:textAllCaps="false"
+                                android:textStyle="bold"
+                                android:textSize="9sp"
+                                android:textColor="#2563EB"
+                                app:cornerRadius="16dp"
+                                app:strokeColor="#2E2563EB"
+                                app:strokeWidth="1dp" />
+
+                            <Space
+                                android:layout_width="10dp"
+                                android:layout_height="1dp" />
+
+                            <com.google.android.material.button.MaterialButton
+                                android:id="@+id/btnActMod"
+                                style="?attr/materialButtonOutlinedStyle"
+                                android:layout_width="0dp"
+                                android:layout_height="34dp"
+                                android:layout_weight="1"
+                                android:text="Moderate"
+                                android:textAllCaps="false"
+                                android:textStyle="bold"
+                                android:textSize="9sp"
+                                android:textColor="#2563EB"
+                                app:cornerRadius="16dp"
+                                app:strokeColor="#2E2563EB"
+                                app:strokeWidth="1dp" />
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="10dp"
+                            android:orientation="horizontal">
+
+                            <com.google.android.material.button.MaterialButton
+                                android:id="@+id/btnActVery"
+                                style="?attr/materialButtonOutlinedStyle"
+                                android:layout_width="0dp"
+                                android:layout_height="34dp"
+                                android:layout_weight="1"
+                                android:text="Very"
+                                android:textAllCaps="false"
+                                android:textStyle="bold"
+                                android:textSize="9sp"
+                                android:textColor="#2563EB"
+                                app:cornerRadius="16dp"
+                                app:strokeColor="#2E2563EB"
+                                app:strokeWidth="1dp" />
+
+                            <Space
+                                android:layout_width="10dp"
+                                android:layout_height="1dp" />
+
+                            <com.google.android.material.button.MaterialButton
+                                android:id="@+id/btnActExtra"
+                                style="?attr/materialButtonOutlinedStyle"
+                                android:layout_width="0dp"
+                                android:layout_height="34dp"
+                                android:layout_weight="1"
+                                android:text="Extra"
+                                android:textAllCaps="false"
+                                android:textStyle="bold"
+                                android:textSize="9sp"
+                                android:textColor="#2563EB"
+                                app:cornerRadius="16dp"
+                                app:strokeColor="#2E2563EB"
+                                app:strokeWidth="1dp" />
+                        </LinearLayout>
+
+                        <TextView
+                            android:id="@+id/tvNutritionOut"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="12dp"
+                            android:paddingStart="12dp"
+                            android:paddingTop="10dp"
+                            android:paddingEnd="12dp"
+                            android:paddingBottom="10dp"
+                            android:text="Enter age and height to calculate estimates."
+                            android:textColor="#0B1B3A"
+                            android:textSize="13.5sp"
+                            android:lineSpacingExtra="2dp"
+                            android:background="#0F2563EB" />
+
+                    </LinearLayout>
+                </com.google.android.material.card.MaterialCardView>
+
+                <!-- Log entry (CARD) -->
+                <com.google.android.material.card.MaterialCardView
+                    android:id="@+id/cardLog"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="12dp"
+                    app:cardBackgroundColor="#FFFFFF"
+                    app:cardCornerRadius="26dp"
+                    app:cardElevation="10dp"
+                    app:cardUseCompatPadding="true"
+                    app:strokeColor="#9AC7E5FF"
+                    app:strokeWidth="1dp">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:padding="16dp"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="Log a weigh-in"
+                            android:textStyle="bold"
+                            android:textColor="#0B1B3A"
+                            android:textSize="15sp" />
+
+                        <!-- Log date (PILL OUTLINE) -->
+                        <com.google.android.material.button.MaterialButton
+                            android:id="@+id/btnPickLogDate"
+                            style="?attr/materialButtonOutlinedStyle"
+                            android:layout_width="match_parent"
+                            android:layout_height="52dp"
+                            android:layout_marginTop="12dp"
+                            android:text="Log date: Today"
+                            android:textAllCaps="false"
+                            android:textStyle="bold"
+                            android:textColor="#2563EB"
+                            app:cornerRadius="999dp"
+                            app:strokeColor="#60A5FA"
+                            app:strokeWidth="1dp"
+                            app:rippleColor="#223B82F6" />
+
+                        <com.google.android.material.textfield.TextInputLayout
+                            android:id="@+id/tilLogWeight"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="12dp"
+                            android:hint="Weight (kg)"
+                            app:boxBackgroundColor="#F7FBFF"
+                            app:boxBackgroundMode="outline"
+                            app:boxCornerRadiusTopStart="20dp"
+                            app:boxCornerRadiusTopEnd="20dp"
+                            app:boxCornerRadiusBottomStart="20dp"
+                            app:boxCornerRadiusBottomEnd="20dp"
+                            app:boxStrokeColor="#93C5FD"
+                            app:boxStrokeWidth="1dp"
+                            app:boxStrokeWidthFocused="2dp"
+                            app:hintTextColor="#3B82F6">
+
+                            <com.google.android.material.textfield.TextInputEditText
+                                android:id="@+id/etLogWeight"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:background="@android:color/transparent"
+                                android:inputType="numberDecimal"
+                                android:paddingStart="14dp"
+                                android:paddingTop="14dp"
+                                android:paddingEnd="14dp"
+                                android:paddingBottom="14dp"
+                                android:textColor="#0B1B3A"
+                                android:textColorHint="#7AA7E8" />
+                        </com.google.android.material.textfield.TextInputLayout>
+
+                        <com.google.android.material.textfield.TextInputLayout
+                            android:id="@+id/tilLogNote"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="12dp"
+                            android:hint="Optional note"
+                            app:boxBackgroundColor="#F7FBFF"
+                            app:boxBackgroundMode="outline"
+                            app:boxCornerRadiusTopStart="20dp"
+                            app:boxCornerRadiusTopEnd="20dp"
+                            app:boxCornerRadiusBottomStart="20dp"
+                            app:boxCornerRadiusBottomEnd="20dp"
+                            app:boxStrokeColor="#93C5FD"
+                            app:boxStrokeWidth="1dp"
+                            app:boxStrokeWidthFocused="2dp"
+                            app:hintTextColor="#3B82F6"
+                            app:helperText="Keep it short and specific"
+                            app:helperTextTextColor="#2B5AA6">
+
+                            <com.google.android.material.textfield.TextInputEditText
+                                android:id="@+id/etLogNote"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:minLines="2"
+                                android:gravity="top"
+                                android:inputType="textMultiLine|textCapSentences"
+                                android:maxLength="120"
+                                android:background="@android:color/transparent"
+                                android:paddingStart="14dp"
+                                android:paddingTop="14dp"
+                                android:paddingEnd="14dp"
+                                android:paddingBottom="14dp"
+                                android:textColor="#0B1B3A"
+                                android:textColorHint="#7AA7E8" />
+                        </com.google.android.material.textfield.TextInputLayout>
+
+                        <!-- Save log (PRIMARY PILL) -->
+                        <com.google.android.material.button.MaterialButton
+                            android:id="@+id/btnSaveLog"
+                            android:layout_width="match_parent"
+                            android:layout_height="56dp"
+                            android:layout_marginTop="12dp"
+                            android:text="Save log"
+                            android:textAllCaps="false"
+                            android:textStyle="bold"
+                            android:textColor="#FFFFFF"
+                            app:backgroundTint="#2563EB"
+                            app:cornerRadius="999dp"
+                            app:rippleColor="#22FFFFFF"
+                            app:strokeColor="#60A5FA"
+                            app:strokeWidth="1dp" />
+
+                    </LinearLayout>
+                </com.google.android.material.card.MaterialCardView>
+
+                <!-- NSV (CARD) -->
+                <com.google.android.material.card.MaterialCardView
+                    android:id="@+id/cardNsv"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="12dp"
+                    app:cardBackgroundColor="#FFFFFF"
+                    app:cardCornerRadius="26dp"
+                    app:cardElevation="10dp"
+                    app:cardUseCompatPadding="true"
+                    app:strokeColor="#9AC7E5FF"
+                    app:strokeWidth="1dp">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:padding="16dp"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="Non-Scale Victories (NSV)"
+                            android:textStyle="bold"
+                            android:textColor="#0B1B3A"
+                            android:textSize="15sp" />
+
+                        <TextView
+                            android:id="@+id/tvNsvNote"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="6dp"
+                            android:text="Log wins beyond weight: energy, sleep, strength, clothing fit, routines, consistency."
+                            android:textColor="#2B5AA6"
+                            android:textSize="13sp"
+                            android:lineSpacingExtra="2dp" />
+
+                        <com.google.android.material.button.MaterialButton
+                            android:id="@+id/btnPickNsvDate"
+                            style="?attr/materialButtonOutlinedStyle"
+                            android:layout_width="match_parent"
+                            android:layout_height="52dp"
+                            android:layout_marginTop="12dp"
+                            android:text="NSV date: Today"
+                            android:textAllCaps="false"
+                            android:textStyle="bold"
+                            android:textColor="#2563EB"
+                            app:cornerRadius="999dp"
+                            app:strokeColor="#60A5FA"
+                            app:strokeWidth="1dp"
+                            app:rippleColor="#223B82F6" />
+
+                        <com.google.android.material.textfield.TextInputLayout
+                            android:id="@+id/tilNsv"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="12dp"
+                            android:hint="NSV note"
+                            app:boxBackgroundColor="#F7FBFF"
+                            app:boxBackgroundMode="outline"
+                            app:boxCornerRadiusTopStart="20dp"
+                            app:boxCornerRadiusTopEnd="20dp"
+                            app:boxCornerRadiusBottomStart="20dp"
+                            app:boxCornerRadiusBottomEnd="20dp"
+                            app:boxStrokeColor="#93C5FD"
+                            app:boxStrokeWidth="1dp"
+                            app:boxStrokeWidthFocused="2dp"
+                            app:hintTextColor="#3B82F6"
+                            app:helperText="Example: &quot;More energy today&quot; or &quot;Clothes fit better&quot;"
+                            app:helperTextTextColor="#2B5AA6">
+
+                            <com.google.android.material.textfield.TextInputEditText
+                                android:id="@+id/etNsv"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:minLines="2"
+                                android:gravity="top"
+                                android:inputType="textMultiLine|textCapSentences"
+                                android:maxLength="160"
+                                android:background="@android:color/transparent"
+                                android:paddingStart="14dp"
+                                android:paddingTop="14dp"
+                                android:paddingEnd="14dp"
+                                android:paddingBottom="14dp"
+                                android:textColor="#0B1B3A"
+                                android:textColorHint="#7AA7E8" />
+                        </com.google.android.material.textfield.TextInputLayout>
+
+                        <com.google.android.material.button.MaterialButton
+                            android:id="@+id/btnSaveNsv"
+                            android:layout_width="match_parent"
+                            android:layout_height="56dp"
+                            android:layout_marginTop="12dp"
+                            android:text="Save NSV"
+                            android:textAllCaps="false"
+                            android:textStyle="bold"
+                            android:textColor="#FFFFFF"
+                            app:backgroundTint="#2563EB"
+                            app:cornerRadius="999dp"
+                            app:rippleColor="#22FFFFFF"
+                            app:strokeColor="#60A5FA"
+                            app:strokeWidth="1dp" />
+
+                        <TextView
+                            android:id="@+id/tvEmptyNsv"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="10dp"
+                            android:text="No NSVs yet. Add your first win above."
+                            android:textColor="#2B5AA6"
+                            android:textSize="13sp"
+                            android:visibility="gone" />
+
+                        <androidx.recyclerview.widget.RecyclerView
+                            android:id="@+id/recyclerNsv"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="10dp"
+                            android:nestedScrollingEnabled="false"
+                            android:clipToPadding="false" />
+
+                    </LinearLayout>
+                </com.google.android.material.card.MaterialCardView>
+
+                <!-- History (CARD) -->
+                <com.google.android.material.card.MaterialCardView
+                    android:id="@+id/cardHistory"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="12dp"
+                    app:cardBackgroundColor="#FFFFFF"
+                    app:cardCornerRadius="26dp"
+                    app:cardElevation="10dp"
+                    app:cardUseCompatPadding="true"
+                    app:strokeColor="#9AC7E5FF"
+                    app:strokeWidth="1dp">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:padding="16dp"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="History"
+                            android:textStyle="bold"
+                            android:textColor="#0B1B3A"
+                            android:textSize="14sp" />
+
+                        <TextView
+                            android:id="@+id/tvEmptyHistory"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="10dp"
+                            android:text="No weigh-ins yet. Add your first log above."
+                            android:textColor="#2B5AA6"
+                            android:textSize="13sp"
+                            android:visibility="gone" />
+
+                        <androidx.recyclerview.widget.RecyclerView
+                            android:id="@+id/recyclerHistory"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="10dp"
+                            android:nestedScrollingEnabled="false"
+                            android:clipToPadding="false" />
+
+                        <!-- Clear all (PILL OUTLINE) -->
+                        <com.google.android.material.button.MaterialButton
+                            android:id="@+id/btnClearAll"
+                            style="?attr/materialButtonOutlinedStyle"
+                            android:layout_width="match_parent"
+                            android:layout_height="52dp"
+                            android:layout_marginTop="12dp"
+                            android:text="Clear all weight data"
+                            android:textAllCaps="false"
+                            android:textStyle="bold"
+                            android:textColor="#2563EB"
+                            app:cornerRadius="999dp"
+                            app:strokeColor="#60A5FA"
+                            app:strokeWidth="1dp"
+                            app:rippleColor="#223B82F6" />
+
+                    </LinearLayout>
+                </com.google.android.material.card.MaterialCardView>
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="14dp" />
+
+            </LinearLayout>
+        </androidx.core.widget.NestedScrollView>
+
+    </androidx.coordinatorlayout.widget.CoordinatorLayout>
+
+</FrameLayout>

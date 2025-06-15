@@ -1,0 +1,504 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/root"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:fitsSystemWindows="true"
+    android:background="#F4F6FF">
+
+    <!-- Optional background image (softened) -->
+    <ImageView
+        android:id="@+id/bgImage"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:src="@drawable/water_bg"
+        android:scaleType="centerCrop"
+        android:alpha="0.10"
+        android:contentDescription="@null" />
+
+    <!-- Light veil (replaces dark dim overlay) -->
+    <View
+        android:id="@+id/dimOverlay"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:alpha="0.88"
+        android:background="#FFFFFF" />
+
+    <!-- FOREGROUND CONTENT -->
+    <androidx.coordinatorlayout.widget.CoordinatorLayout
+        android:id="@+id/contentRoot"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@android:color/transparent">
+
+        <!-- Toolbar in a rounded "sheet" card -->
+        <com.google.android.material.card.MaterialCardView
+            android:id="@+id/toolbarCard"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="12dp"
+            android:layout_marginEnd="16dp"
+            app:cardBackgroundColor="#FDFDFF"
+            app:cardCornerRadius="26dp"
+            app:cardElevation="8dp"
+            app:cardUseCompatPadding="true"
+            app:strokeColor="#E5E9F5"
+            app:strokeWidth="1dp">
+
+            <com.google.android.material.appbar.MaterialToolbar
+                android:id="@+id/toolbar"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@android:color/transparent"
+                app:title="Water Intake"
+                app:titleTextColor="#111827"
+                app:navigationIcon="@drawable/ic_back_medical"
+                app:navigationIconTint="#111827" />
+        </com.google.android.material.card.MaterialCardView>
+
+        <androidx.core.widget.NestedScrollView
+            android:id="@+id/scroll"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginTop="92dp"
+            android:fillViewport="true"
+            android:padding="16dp"
+            android:clipToPadding="false"
+            android:overScrollMode="never"
+            app:layout_behavior="@string/appbar_scrolling_view_behavior">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <!-- SUMMARY CARD (light sheet) -->
+                <com.google.android.material.card.MaterialCardView
+                    android:id="@+id/cardSummary"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    app:cardBackgroundColor="#FDFDFF"
+                    app:cardCornerRadius="26dp"
+                    app:cardElevation="8dp"
+                    app:cardUseCompatPadding="true"
+                    app:strokeColor="#E5E9F5"
+                    app:strokeWidth="1dp">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical"
+                        android:padding="16dp">
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:gravity="center_vertical"
+                            android:orientation="horizontal">
+
+                            <TextView
+                                android:id="@+id/tvToday"
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="1"
+                                android:text="Today"
+                                android:textStyle="bold"
+                                android:textColor="#111827"
+                                android:textSize="16sp"/>
+
+                            <com.google.android.material.chip.Chip
+                                android:id="@+id/chipPercent"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="0%"
+                                android:textStyle="bold"
+                                android:textColor="#1E3A8A"
+                                android:checkable="false"
+                                android:clickable="false"
+                                app:chipBackgroundColor="#E0ECFF"/>
+                        </LinearLayout>
+
+                        <TextView
+                            android:id="@+id/tvBigMl"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="8dp"
+                            android:text="0 ml"
+                            android:textStyle="bold"
+                            android:textSize="28sp"
+                            android:textColor="#111827"/>
+
+                        <TextView
+                            android:id="@+id/tvProgress"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="4dp"
+                            android:text="0 / 2000 ml"
+                            android:textColor="#6B7280"
+                            android:textSize="14sp"/>
+
+                        <TextView
+                            android:id="@+id/tvRemaining"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="6dp"
+                            android:text="2000 ml left"
+                            android:textColor="#111827"
+                            android:textSize="14sp"/>
+
+                        <com.google.android.material.progressindicator.LinearProgressIndicator
+                            android:id="@+id/progressBar"
+                            android:layout_width="match_parent"
+                            android:layout_height="10dp"
+                            android:layout_marginTop="12dp"
+                            android:max="100"
+                            app:trackCornerRadius="12dp"
+                            app:indicatorColor="#3B82F6"
+                            app:trackColor="#E9EEF9"/>
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="12dp"
+                            android:gravity="center_vertical"
+                            android:orientation="horizontal">
+
+                            <TextView
+                                android:id="@+id/tvGoalLabel"
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="1"
+                                android:text="Daily goal: 2000 ml"
+                                android:textColor="#6B7280"
+                                android:textSize="13sp"/>
+
+                            <com.google.android.material.button.MaterialButton
+                                android:id="@+id/btnSetGoal"
+                                android:layout_width="wrap_content"
+                                android:layout_height="40dp"
+                                android:text="Set goal"
+                                android:textAllCaps="false"
+                                android:textStyle="bold"
+                                android:textColor="#1E3A8A"
+                                app:backgroundTint="#DDEBFF"
+                                app:cornerRadius="999dp"
+                                app:elevation="0dp"
+                                app:rippleColor="#22000000"
+                                app:strokeColor="#A7C5FF"
+                                app:strokeWidth="1dp"
+                                android:insetLeft="0dp"
+                                android:insetRight="0dp"
+                                android:insetTop="0dp"
+                                android:insetBottom="0dp"/>
+                        </LinearLayout>
+
+                    </LinearLayout>
+                </com.google.android.material.card.MaterialCardView>
+
+                <!-- QUICK ADD CARD -->
+                <com.google.android.material.card.MaterialCardView
+                    android:id="@+id/cardQuickAdd"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="12dp"
+                    app:cardBackgroundColor="#FDFDFF"
+                    app:cardCornerRadius="26dp"
+                    app:cardElevation="8dp"
+                    app:cardUseCompatPadding="true"
+                    app:strokeColor="#E5E9F5"
+                    app:strokeWidth="1dp">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical"
+                        android:padding="16dp">
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:gravity="center_vertical"
+                            android:orientation="horizontal">
+
+                            <TextView
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="1"
+                                android:text="Quick add"
+                                android:textStyle="bold"
+                                android:textColor="#111827"
+                                android:textSize="14sp"/>
+
+                            <TextView
+                                android:id="@+id/tvStreak"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="Streak: 0 days"
+                                android:textColor="#6B7280"
+                                android:textSize="13sp"/>
+                        </LinearLayout>
+
+                        <!-- Row 1 -->
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="12dp"
+                            android:orientation="horizontal">
+
+                            <com.google.android.material.button.MaterialButton
+                                android:id="@+id/btnAdd150"
+                                style="?attr/materialButtonOutlinedStyle"
+                                android:layout_width="0dp"
+                                android:layout_height="44dp"
+                                android:layout_weight="1"
+                                android:text="+150 ml"
+                                android:textAllCaps="false"
+                                android:textStyle="bold"
+                                android:textColor="#111827"
+                                app:cornerRadius="18dp"
+                                app:strokeColor="#D5DAE6"
+                                app:strokeWidth="1dp"
+                                app:backgroundTint="#FFFFFF"
+                                app:rippleColor="#22000000"
+                                android:insetLeft="0dp"
+                                android:insetRight="0dp"
+                                android:insetTop="0dp"
+                                android:insetBottom="0dp"/>
+
+                            <Space
+                                android:layout_width="10dp"
+                                android:layout_height="1dp"/>
+
+                            <com.google.android.material.button.MaterialButton
+                                android:id="@+id/btnAdd250"
+                                style="?attr/materialButtonOutlinedStyle"
+                                android:layout_width="0dp"
+                                android:layout_height="44dp"
+                                android:layout_weight="1"
+                                android:text="+250 ml"
+                                android:textAllCaps="false"
+                                android:textStyle="bold"
+                                android:textColor="#111827"
+                                app:cornerRadius="18dp"
+                                app:strokeColor="#D5DAE6"
+                                app:strokeWidth="1dp"
+                                app:backgroundTint="#FFFFFF"
+                                app:rippleColor="#22000000"
+                                android:insetLeft="0dp"
+                                android:insetRight="0dp"
+                                android:insetTop="0dp"
+                                android:insetBottom="0dp"/>
+
+                            <Space
+                                android:layout_width="10dp"
+                                android:layout_height="1dp"/>
+
+                            <com.google.android.material.button.MaterialButton
+                                android:id="@+id/btnAdd330"
+                                style="?attr/materialButtonOutlinedStyle"
+                                android:layout_width="0dp"
+                                android:layout_height="44dp"
+                                android:layout_weight="1"
+                                android:text="+330 ml"
+                                android:textAllCaps="false"
+                                android:textStyle="bold"
+                                android:textColor="#111827"
+                                app:cornerRadius="18dp"
+                                app:strokeColor="#D5DAE6"
+                                app:strokeWidth="1dp"
+                                app:backgroundTint="#FFFFFF"
+                                app:rippleColor="#22000000"
+                                android:insetLeft="0dp"
+                                android:insetRight="0dp"
+                                android:insetTop="0dp"
+                                android:insetBottom="0dp"/>
+                        </LinearLayout>
+
+                        <!-- Row 2 -->
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="10dp"
+                            android:orientation="horizontal">
+
+                            <com.google.android.material.button.MaterialButton
+                                android:id="@+id/btnAdd500"
+                                style="?attr/materialButtonOutlinedStyle"
+                                android:layout_width="0dp"
+                                android:layout_height="44dp"
+                                android:layout_weight="1"
+                                android:text="+500 ml"
+                                android:textAllCaps="false"
+                                android:textStyle="bold"
+                                android:textColor="#111827"
+                                app:cornerRadius="18dp"
+                                app:strokeColor="#D5DAE6"
+                                app:strokeWidth="1dp"
+                                app:backgroundTint="#FFFFFF"
+                                app:rippleColor="#22000000"
+                                android:insetLeft="0dp"
+                                android:insetRight="0dp"
+                                android:insetTop="0dp"
+                                android:insetBottom="0dp"/>
+
+                            <Space
+                                android:layout_width="10dp"
+                                android:layout_height="1dp"/>
+
+                            <com.google.android.material.button.MaterialButton
+                                android:id="@+id/btnAdd750"
+                                style="?attr/materialButtonOutlinedStyle"
+                                android:layout_width="0dp"
+                                android:layout_height="44dp"
+                                android:layout_weight="1"
+                                android:text="+750 ml"
+                                android:textAllCaps="false"
+                                android:textStyle="bold"
+                                android:textColor="#111827"
+                                app:cornerRadius="18dp"
+                                app:strokeColor="#D5DAE6"
+                                app:strokeWidth="1dp"
+                                app:backgroundTint="#FFFFFF"
+                                app:rippleColor="#22000000"
+                                android:insetLeft="0dp"
+                                android:insetRight="0dp"
+                                android:insetTop="0dp"
+                                android:insetBottom="0dp"/>
+
+                            <Space
+                                android:layout_width="10dp"
+                                android:layout_height="1dp"/>
+
+                            <com.google.android.material.button.MaterialButton
+                                android:id="@+id/btnAddCustom"
+                                android:layout_width="0dp"
+                                android:layout_height="44dp"
+                                android:layout_weight="1"
+                                android:text="Custom"
+                                android:textAllCaps="false"
+                                android:textStyle="bold"
+                                android:textColor="#1E3A8A"
+                                app:backgroundTint="#DDEBFF"
+                                app:cornerRadius="18dp"
+                                app:elevation="0dp"
+                                app:rippleColor="#22000000"
+                                app:strokeColor="#A7C5FF"
+                                app:strokeWidth="1dp"
+                                android:insetLeft="0dp"
+                                android:insetRight="0dp"
+                                android:insetTop="0dp"
+                                android:insetBottom="0dp"/>
+                        </LinearLayout>
+
+                        <!-- Reset -->
+                        <com.google.android.material.button.MaterialButton
+                            android:id="@+id/btnReset"
+                            android:layout_width="match_parent"
+                            android:layout_height="44dp"
+                            android:layout_marginTop="12dp"
+                            android:text="Reset today"
+                            android:textAllCaps="false"
+                            android:textStyle="bold"
+                            android:textColor="#1E3A8A"
+                            app:backgroundTint="#DDEBFF"
+                            app:cornerRadius="999dp"
+                            app:elevation="0dp"
+                            app:rippleColor="#22000000"
+                            app:strokeColor="#A7C5FF"
+                            app:strokeWidth="1dp"
+                            android:insetLeft="0dp"
+                            android:insetRight="0dp"
+                            android:insetTop="0dp"
+                            android:insetBottom="0dp"/>
+
+                    </LinearLayout>
+                </com.google.android.material.card.MaterialCardView>
+
+                <!-- TIP CARD -->
+                <com.google.android.material.card.MaterialCardView
+                    android:id="@+id/cardTip"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="12dp"
+                    app:cardBackgroundColor="#FDFDFF"
+                    app:cardCornerRadius="26dp"
+                    app:cardElevation="8dp"
+                    app:cardUseCompatPadding="true"
+                    app:strokeColor="#E5E9F5"
+                    app:strokeWidth="1dp">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical"
+                        android:padding="16dp">
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="Hydration tip"
+                            android:textStyle="bold"
+                            android:textColor="#111827"
+                            android:textSize="14sp"/>
+
+                        <TextView
+                            android:id="@+id/tvTip"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="6dp"
+                            android:text="Tip text"
+                            android:textColor="#6B7280"
+                            android:textSize="13sp"
+                            android:lineSpacingExtra="2dp"/>
+                    </LinearLayout>
+                </com.google.android.material.card.MaterialCardView>
+
+                <!-- 7-DAY HISTORY CARD -->
+                <com.google.android.material.card.MaterialCardView
+                    android:id="@+id/cardHistory"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="12dp"
+                    app:cardBackgroundColor="#FDFDFF"
+                    app:cardCornerRadius="26dp"
+                    app:cardElevation="8dp"
+                    app:cardUseCompatPadding="true"
+                    app:strokeColor="#E5E9F5"
+                    app:strokeWidth="1dp">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical"
+                        android:padding="16dp">
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="Last 7 days"
+                            android:textStyle="bold"
+                            android:textColor="#111827"
+                            android:textSize="14sp"/>
+
+                        <LinearLayout
+                            android:id="@+id/historyContainer"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="vertical"
+                            android:layout_marginTop="10dp"/>
+                    </LinearLayout>
+                </com.google.android.material.card.MaterialCardView>
+
+                <Space
+                    android:layout_width="1dp"
+                    android:layout_height="18dp"/>
+
+            </LinearLayout>
+        </androidx.core.widget.NestedScrollView>
+
+    </androidx.coordinatorlayout.widget.CoordinatorLayout>
+
+</FrameLayout>

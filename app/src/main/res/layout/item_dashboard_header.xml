@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<TextView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/tvHeader"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginTop="20dp"
+    android:layout_marginBottom="8dp"
+    android:paddingStart="4dp"
+    android:paddingEnd="4dp"
+    android:text="Section"
+    android:textStyle="bold"
+    android:textSize="13sp"
+    android:textAllCaps="true"
+    android:letterSpacing="0.05"
+    android:textColor="@color/zealth_on_surface_variant" />

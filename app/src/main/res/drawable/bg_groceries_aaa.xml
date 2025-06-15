@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layer-list xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <!-- Base: mint -> sky gradient -->
+    <item>
+        <shape android:shape="rectangle">
+            <gradient
+                android:angle="135"
+                android:startColor="#E8FFF3"
+                android:centerColor="#EAF6FF"
+                android:endColor="#F7FAFF"
+                android:type="linear" />
+        </shape>
+    </item>
+
+    <!-- Soft top highlight (clinical glow) -->
+    <item android:top="-120dp">
+        <shape android:shape="oval">
+            <gradient
+                android:type="radial"
+                android:gradientRadius="380dp"
+                android:centerX="35%"
+                android:centerY="15%"
+                android:startColor="#66FFFFFF"
+                android:endColor="#00FFFFFF" />
+        </shape>
+    </item>
+
+    <!-- Subtle bottom-right tint (ties into coral accent) -->
+    <item android:bottom="-140dp" android:right="-140dp">
+        <shape android:shape="oval">
+            <gradient
+                android:type="radial"
+                android:gradientRadius="420dp"
+                android:centerX="85%"
+                android:centerY="85%"
+                android:startColor="#26FF6B6B"
+                android:endColor="#00FFFFFF" />
+        </shape>
+    </item>
+
+</layer-list>

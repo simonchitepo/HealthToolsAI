@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.google.android.material.card.MaterialCardView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginBottom="12dp"
+    app:cardCornerRadius="18dp"
+    app:cardElevation="6dp"
+    app:cardBackgroundColor="@color/zealth_surface"
+    app:strokeWidth="1dp"
+    app:strokeColor="@color/zealth_outline">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="14dp">
+
+        <TextView
+            android:id="@+id/tvTitle"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Craving intensity: 4/5"
+            android:textStyle="bold"
+            android:textColor="@color/zealth_on_surface"
+            android:textSize="15sp"/>
+
+        <TextView
+            android:id="@+id/tvMeta"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="4dp"
+            android:text="2025-01-01 12:00"
+            android:textColor="@color/zealth_on_surface_variant"
+            android:textSize="12sp"/>
+
+        <!-- Optional tags (only visible if adapter adds chips) -->
+        <com.google.android.material.chip.ChipGroup
+            android:id="@+id/chipGroupItemTags"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            app:singleLine="true"
+            app:chipSpacingHorizontal="8dp"
+            app:chipSpacingVertical="8dp"/>
+
+        <TextView
+            android:id="@+id/tvNote"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:text="Optional note"
+            android:textColor="@color/zealth_on_surface"
+            android:textSize="13sp"
+            android:lineSpacingExtra="2dp"/>
+    </LinearLayout>
+
+</com.google.android.material.card.MaterialCardView>

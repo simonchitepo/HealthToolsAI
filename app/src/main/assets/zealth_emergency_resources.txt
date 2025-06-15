@@ -1,0 +1,5 @@
+ZEMERGENCY_BEGIN
+US|988 Suicide & Crisis Lifeline|24/7 crisis support (call or text 988)|988|
+GB|Samaritans|24/7 listening line|116123|
+DEFAULT|FindAHelpline|Global directory for local crisis resources||https://findahelpline.com/
+ZEMERGENCY_END

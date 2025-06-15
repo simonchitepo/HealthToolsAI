@@ -1,0 +1,1096 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/root"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#F7F7FF">
+
+    <!-- Background layer kept for BlurView compatibility -->
+    <eightbitlab.com.blurview.BlurTarget
+        android:id="@+id/blurTarget"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <ImageView
+            android:id="@+id/bgImage"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:src="@drawable/womens_bg"
+            android:scaleType="centerCrop"
+            android:alpha="0.05"
+            android:contentDescription="@null" />
+
+        <!-- Soft veil -->
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:alpha="0.95"
+            android:background="#FCFCFF" />
+
+        <!-- Accent washes -->
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="240dp"
+            android:layout_gravity="top"
+            android:alpha="0.20"
+            android:background="#A855F7" />
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="240dp"
+            android:layout_gravity="top"
+            android:alpha="0.12"
+            android:background="#FB7185" />
+
+    </eightbitlab.com.blurview.BlurTarget>
+
+    <!-- Foreground UI -->
+    <androidx.coordinatorlayout.widget.CoordinatorLayout
+        android:id="@+id/contentRoot"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:fitsSystemWindows="true"
+        android:background="@android:color/transparent">
+
+        <!-- Toolbar area -->
+        <com.google.android.material.appbar.AppBarLayout
+            android:id="@+id/appBar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:fitsSystemWindows="true"
+            android:background="@android:color/transparent"
+            app:liftOnScroll="true"
+            app:liftOnScrollTargetViewId="@id/scroll">
+
+            <eightbitlab.com.blurview.BlurView
+                android:id="@+id/blurToolbar"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@android:color/transparent"
+                app:blurOverlayColor="#14FFFFFF">
+
+                <com.google.android.material.card.MaterialCardView
+                    android:id="@+id/toolbarCard"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="16dp"
+                    android:layout_marginTop="12dp"
+                    android:layout_marginEnd="16dp"
+                    android:layout_marginBottom="10dp"
+                    app:cardBackgroundColor="#FFFFFFFF"
+                    app:cardCornerRadius="26dp"
+                    app:cardElevation="10dp"
+                    app:cardUseCompatPadding="true"
+                    app:strokeColor="#22A855F7"
+                    app:strokeWidth="1dp">
+
+                    <com.google.android.material.appbar.MaterialToolbar
+                        android:id="@+id/toolbar"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:background="@android:color/transparent"
+                        app:title="Women’s Health"
+                        app:subtitle="Period tracking and wellbeing"
+                        app:titleTextColor="#24113D"
+                        app:subtitleTextColor="#6D28D9"
+                        app:navigationIcon="@drawable/ic_back_medical"
+                        app:navigationIconTint="#6D28D9"/>
+
+                </com.google.android.material.card.MaterialCardView>
+            </eightbitlab.com.blurview.BlurView>
+        </com.google.android.material.appbar.AppBarLayout>
+
+        <androidx.core.widget.NestedScrollView
+            android:id="@+id/scroll"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:fillViewport="true"
+            android:paddingStart="16dp"
+            android:paddingTop="12dp"
+            android:paddingEnd="16dp"
+            android:paddingBottom="18dp"
+            android:clipToPadding="false"
+            android:overScrollMode="never"
+            app:layout_behavior="@string/appbar_scrolling_view_behavior">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:animateLayoutChanges="true">
+
+                <!-- TODAY -->
+                <eightbitlab.com.blurview.BlurView
+                    android:id="@+id/blurTodayCard"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@android:color/transparent"
+                    app:blurOverlayColor="#14FFFFFF">
+
+                    <com.google.android.material.card.MaterialCardView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        app:cardBackgroundColor="#FFFFFFFF"
+                        app:cardCornerRadius="26dp"
+                        app:cardElevation="10dp"
+                        app:cardUseCompatPadding="true"
+                        app:strokeColor="#22FB7185"
+                        app:strokeWidth="1dp">
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:padding="16dp"
+                            android:orientation="vertical">
+
+                            <TextView
+                                android:id="@+id/tvTodayHeader"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:text="Today"
+                                android:textStyle="bold"
+                                android:textColor="#24113D"
+                                android:textSize="15sp"/>
+
+                            <TextView
+                                android:id="@+id/tvTodayPhase"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="6dp"
+                                android:text="—"
+                                android:textColor="#6D28D9"
+                                android:textSize="14sp"
+                                android:textStyle="bold"/>
+
+                            <TextView
+                                android:id="@+id/tvTodayTips"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="10dp"
+                                android:text="—"
+                                android:textColor="#3B2A54"
+                                android:textSize="13sp"
+                                android:lineSpacingExtra="2dp"/>
+
+                        </LinearLayout>
+                    </com.google.android.material.card.MaterialCardView>
+                </eightbitlab.com.blurview.BlurView>
+
+                <!-- NOTIFICATIONS -->
+                <eightbitlab.com.blurview.BlurView
+                    android:id="@+id/blurNotifCard"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="12dp"
+                    android:background="@android:color/transparent"
+                    app:blurOverlayColor="#14FFFFFF">
+
+                    <com.google.android.material.card.MaterialCardView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        app:cardBackgroundColor="#FFFFFFFF"
+                        app:cardCornerRadius="26dp"
+                        app:cardElevation="10dp"
+                        app:cardUseCompatPadding="true"
+                        app:strokeColor="#22A855F7"
+                        app:strokeWidth="1dp">
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:padding="16dp"
+                            android:orientation="vertical">
+
+                            <TextView
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:text="Notifications"
+                                android:textStyle="bold"
+                                android:textColor="#24113D"
+                                android:textSize="15sp"/>
+
+                            <TextView
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="6dp"
+                                android:text="Choose what you want to receive daily."
+                                android:textColor="#3B2A54"
+                                android:textSize="13sp"/>
+
+                            <com.google.android.material.switchmaterial.SwitchMaterial
+                                android:id="@+id/swCycleNotifs"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="10dp"
+                                android:text="Cycle day (estimate) reminder"
+                                android:textColor="#24113D" />
+
+                            <com.google.android.material.switchmaterial.SwitchMaterial
+                                android:id="@+id/swGuideNotifs"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:text="General wellness note (short)"
+                                android:textColor="#24113D" />
+
+                            <com.google.android.material.switchmaterial.SwitchMaterial
+                                android:id="@+id/swEncourageNotifs"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:text="Friendly reminder message"
+                                android:textColor="#24113D" />
+
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="10dp"
+                                android:orientation="horizontal"
+                                android:gravity="center_vertical">
+
+                                <TextView
+                                    android:layout_width="0dp"
+                                    android:layout_height="wrap_content"
+                                    android:layout_weight="1"
+                                    android:text="Daily time"
+                                    android:textStyle="bold"
+                                    android:textColor="#6D28D9"
+                                    android:textSize="13sp"/>
+
+                                <com.google.android.material.button.MaterialButton
+                                    android:id="@+id/btnPickNotifTime"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="40dp"
+                                    android:text="Change"
+                                    android:textAllCaps="false"
+                                    android:textStyle="bold"
+                                    app:cornerRadius="999dp"
+                                    app:backgroundTint="#F3E8FF"
+                                    app:strokeColor="#C4B5FD"
+                                    app:strokeWidth="1dp"
+                                    android:textColor="#6D28D9"
+                                    android:insetLeft="0dp"
+                                    android:insetRight="0dp"
+                                    android:insetTop="0dp"
+                                    android:insetBottom="0dp"/>
+                            </LinearLayout>
+
+                            <TextView
+                                android:id="@+id/tvNotifTime"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="6dp"
+                                android:text="09:00"
+                                android:textColor="#3B2A54"
+                                android:textSize="13sp"/>
+
+                        </LinearLayout>
+                    </com.google.android.material.card.MaterialCardView>
+                </eightbitlab.com.blurview.BlurView>
+
+                <!-- DISCLAIMER -->
+                <eightbitlab.com.blurview.BlurView
+                    android:id="@+id/blurDisclaimerCard"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="12dp"
+                    android:background="@android:color/transparent"
+                    app:blurOverlayColor="#14FFFFFF">
+
+                    <com.google.android.material.card.MaterialCardView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        app:cardBackgroundColor="#FFFFFFFF"
+                        app:cardCornerRadius="26dp"
+                        app:cardElevation="10dp"
+                        app:cardUseCompatPadding="true"
+                        app:strokeColor="#22FB7185"
+                        app:strokeWidth="1dp">
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:padding="16dp"
+                            android:orientation="vertical">
+
+                            <TextView
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:text="Important"
+                                android:textStyle="bold"
+                                android:textColor="#24113D"
+                                android:textSize="14sp"/>
+
+                            <TextView
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="6dp"
+                                android:text="All entries and estimates are for personal reference and may be inaccurate. This feature is not contraception and does not provide medical advice, diagnosis, or treatment. If you have severe pain, heavy or irregular bleeding, pregnancy concerns, or urgent symptoms, seek help from a qualified healthcare professional."
+                                android:textColor="#3B2A54"
+                                android:textSize="13sp"
+                                android:lineSpacingExtra="2dp"/>
+
+                        </LinearLayout>
+                    </com.google.android.material.card.MaterialCardView>
+                </eightbitlab.com.blurview.BlurView>
+
+                <!-- CYCLE SETTINGS -->
+                <eightbitlab.com.blurview.BlurView
+                    android:id="@+id/blurCycleSettingsCard"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="12dp"
+                    android:background="@android:color/transparent"
+                    app:blurOverlayColor="#14FFFFFF">
+
+                    <com.google.android.material.card.MaterialCardView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        app:cardBackgroundColor="#FFFFFFFF"
+                        app:cardCornerRadius="26dp"
+                        app:cardElevation="10dp"
+                        app:cardUseCompatPadding="true"
+                        app:strokeColor="#22A855F7"
+                        app:strokeWidth="1dp">
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:padding="16dp"
+                            android:orientation="vertical">
+
+                            <TextView
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:text="Cycle settings"
+                                android:textStyle="bold"
+                                android:textColor="#24113D"
+                                android:textSize="15sp"/>
+
+                            <eightbitlab.com.blurview.BlurView
+                                android:id="@+id/blurBtnPickLastPeriod"
+                                android:layout_width="match_parent"
+                                android:layout_height="56dp"
+                                android:layout_marginTop="10dp"
+                                android:background="@android:color/transparent"
+                                app:blurOverlayColor="#14FFFFFF">
+
+                                <com.google.android.material.button.MaterialButton
+                                    android:id="@+id/btnPickLastPeriod"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="match_parent"
+                                    android:text="Last period start: Not set"
+                                    android:textAllCaps="false"
+                                    android:textStyle="bold"
+                                    android:textColor="#FFFFFF"
+                                    app:backgroundTint="#6D28D9"
+                                    app:cornerRadius="999dp"
+                                    app:rippleColor="#22FFFFFF"
+                                    app:strokeColor="#C4B5FD"
+                                    app:strokeWidth="1dp"
+                                    app:icon="@android:drawable/ic_menu_my_calendar"
+                                    app:iconTint="#FFFFFF"
+                                    app:iconGravity="textStart"
+                                    app:iconPadding="10dp"
+                                    android:insetLeft="0dp"
+                                    android:insetRight="0dp"
+                                    android:insetTop="0dp"
+                                    android:insetBottom="0dp"/>
+                            </eightbitlab.com.blurview.BlurView>
+
+                            <TextView
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="8dp"
+                                android:text="Select your last period start date to calculate approximate cycle-day and period-date estimates."
+                                android:textColor="#3B2A54"
+                                android:textSize="12sp"
+                                android:lineSpacingExtra="1dp"/>
+
+                            <TextView
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="12dp"
+                                android:layout_marginBottom="6dp"
+                                android:text="Cycle length"
+                                android:textColor="#6D28D9"
+                                android:textSize="13sp"
+                                android:textStyle="bold"/>
+
+                            <com.google.android.material.textfield.TextInputLayout
+                                android:id="@+id/tilCycleLength"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                app:boxBackgroundMode="outline"
+                                app:boxBackgroundColor="#FBFAFF"
+                                app:boxCornerRadiusTopStart="20dp"
+                                app:boxCornerRadiusTopEnd="20dp"
+                                app:boxCornerRadiusBottomStart="20dp"
+                                app:boxCornerRadiusBottomEnd="20dp"
+                                app:boxStrokeColor="#C4B5FD"
+                                app:boxStrokeWidth="1dp"
+                                app:boxStrokeWidthFocused="2dp"
+                                app:hintTextColor="#6D28D9">
+
+                                <com.google.android.material.textfield.TextInputEditText
+                                    android:id="@+id/etCycleLength"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:background="@android:color/transparent"
+                                    android:hint="Cycle length (days)"
+                                    android:inputType="number"
+                                    android:imeOptions="actionDone"
+                                    android:paddingStart="14dp"
+                                    android:paddingTop="14dp"
+                                    android:paddingEnd="14dp"
+                                    android:paddingBottom="14dp"
+                                    android:textColor="#24113D"
+                                    android:textColorHint="#8B7AA8"/>
+                            </com.google.android.material.textfield.TextInputLayout>
+
+                            <TextView
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="12dp"
+                                android:layout_marginBottom="6dp"
+                                android:text="Period length"
+                                android:textColor="#6D28D9"
+                                android:textSize="13sp"
+                                android:textStyle="bold"/>
+
+                            <com.google.android.material.textfield.TextInputLayout
+                                android:id="@+id/tilPeriodLength"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                app:boxBackgroundMode="outline"
+                                app:boxBackgroundColor="#FBFAFF"
+                                app:boxCornerRadiusTopStart="20dp"
+                                app:boxCornerRadiusTopEnd="20dp"
+                                app:boxCornerRadiusBottomStart="20dp"
+                                app:boxCornerRadiusBottomEnd="20dp"
+                                app:boxStrokeColor="#C4B5FD"
+                                app:boxStrokeWidth="1dp"
+                                app:boxStrokeWidthFocused="2dp"
+                                app:hintTextColor="#6D28D9">
+
+                                <com.google.android.material.textfield.TextInputEditText
+                                    android:id="@+id/etPeriodLength"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:background="@android:color/transparent"
+                                    android:hint="Period length (days)"
+                                    android:inputType="number"
+                                    android:imeOptions="actionDone"
+                                    android:paddingStart="14dp"
+                                    android:paddingTop="14dp"
+                                    android:paddingEnd="14dp"
+                                    android:paddingBottom="14dp"
+                                    android:textColor="#24113D"
+                                    android:textColorHint="#8B7AA8"/>
+                            </com.google.android.material.textfield.TextInputLayout>
+
+                            <!-- Keep this field only if your Java logic still uses it.
+                                 If you remove fertility/ovulation logic, consider removing this input too. -->
+                            <TextView
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="12dp"
+                                android:layout_marginBottom="6dp"
+                                android:text="Late cycle phase length (optional)"
+                                android:textColor="#6D28D9"
+                                android:textSize="13sp"
+                                android:textStyle="bold"/>
+
+                            <com.google.android.material.textfield.TextInputLayout
+                                android:id="@+id/tilLutealLength"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                app:boxBackgroundMode="outline"
+                                app:boxBackgroundColor="#FBFAFF"
+                                app:boxCornerRadiusTopStart="20dp"
+                                app:boxCornerRadiusTopEnd="20dp"
+                                app:boxCornerRadiusBottomStart="20dp"
+                                app:boxCornerRadiusBottomEnd="20dp"
+                                app:boxStrokeColor="#C4B5FD"
+                                app:boxStrokeWidth="1dp"
+                                app:boxStrokeWidthFocused="2dp"
+                                app:hintTextColor="#6D28D9">
+
+                                <com.google.android.material.textfield.TextInputEditText
+                                    android:id="@+id/etLutealLength"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:background="@android:color/transparent"
+                                    android:hint="Optional (days)"
+                                    android:inputType="number"
+                                    android:imeOptions="actionDone"
+                                    android:paddingStart="14dp"
+                                    android:paddingTop="14dp"
+                                    android:paddingEnd="14dp"
+                                    android:paddingBottom="14dp"
+                                    android:textColor="#24113D"
+                                    android:textColorHint="#8B7AA8"/>
+                            </com.google.android.material.textfield.TextInputLayout>
+
+                            <eightbitlab.com.blurview.BlurView
+                                android:id="@+id/blurBtnSaveSettings"
+                                android:layout_width="match_parent"
+                                android:layout_height="56dp"
+                                android:layout_marginTop="12dp"
+                                android:background="@android:color/transparent"
+                                app:blurOverlayColor="#14FFFFFF">
+
+                                <com.google.android.material.button.MaterialButton
+                                    android:id="@+id/btnSaveSettings"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="match_parent"
+                                    android:text="Save settings"
+                                    android:textAllCaps="false"
+                                    android:textStyle="bold"
+                                    android:textColor="#FFFFFF"
+                                    app:backgroundTint="#6D28D9"
+                                    app:cornerRadius="999dp"
+                                    app:rippleColor="#22FFFFFF"
+                                    app:strokeColor="#C4B5FD"
+                                    app:strokeWidth="1dp"
+                                    app:icon="@android:drawable/ic_menu_save"
+                                    app:iconTint="#FFFFFF"
+                                    app:iconGravity="textStart"
+                                    app:iconPadding="10dp"
+                                    android:insetLeft="0dp"
+                                    android:insetRight="0dp"
+                                    android:insetTop="0dp"
+                                    android:insetBottom="0dp"/>
+                            </eightbitlab.com.blurview.BlurView>
+
+                        </LinearLayout>
+                    </com.google.android.material.card.MaterialCardView>
+                </eightbitlab.com.blurview.BlurView>
+
+                <!-- DAILY LOG -->
+                <eightbitlab.com.blurview.BlurView
+                    android:id="@+id/blurDailyLogCard"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="12dp"
+                    android:background="@android:color/transparent"
+                    app:blurOverlayColor="#14FFFFFF">
+
+                    <com.google.android.material.card.MaterialCardView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        app:cardBackgroundColor="#FFFFFFFF"
+                        app:cardCornerRadius="26dp"
+                        app:cardElevation="10dp"
+                        app:cardUseCompatPadding="true"
+                        app:strokeColor="#22FB7185"
+                        app:strokeWidth="1dp">
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:padding="16dp"
+                            android:orientation="vertical">
+
+                            <TextView
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:text="Daily log (optional)"
+                                android:textStyle="bold"
+                                android:textColor="#24113D"
+                                android:textSize="15sp"/>
+
+                            <TextView
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="6dp"
+                                android:text="Track flow, symptoms, wellbeing, and energy for today (for personal reference)."
+                                android:textColor="#3B2A54"
+                                android:textSize="13sp"/>
+
+                            <TextView
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="12dp"
+                                android:text="Flow"
+                                android:textStyle="bold"
+                                android:textColor="#6D28D9"
+                                android:textSize="13sp"/>
+
+                            <com.google.android.material.chip.ChipGroup
+                                android:id="@+id/chipGroupFlow"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="8dp"
+                                app:singleSelection="true"
+                                app:selectionRequired="false"
+                                app:chipSpacingHorizontal="8dp"
+                                app:chipSpacingVertical="8dp">
+
+                                <com.google.android.material.chip.Chip
+                                    android:id="@+id/chipFlowSpotting"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:minHeight="40dp"
+                                    android:text="Spotting"
+                                    android:checkable="true"
+                                    android:textColor="#6D28D9"
+                                    app:chipBackgroundColor="#F3E8FF"
+                                    app:chipStrokeWidth="1dp"
+                                    app:chipStrokeColor="#C4B5FD" />
+
+                                <com.google.android.material.chip.Chip
+                                    android:id="@+id/chipFlowLight"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:minHeight="40dp"
+                                    android:text="Light"
+                                    android:checkable="true"
+                                    android:textColor="#6D28D9"
+                                    app:chipBackgroundColor="#F3E8FF"
+                                    app:chipStrokeWidth="1dp"
+                                    app:chipStrokeColor="#C4B5FD" />
+
+                                <com.google.android.material.chip.Chip
+                                    android:id="@+id/chipFlowMedium"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:minHeight="40dp"
+                                    android:text="Medium"
+                                    android:checkable="true"
+                                    android:textColor="#6D28D9"
+                                    app:chipBackgroundColor="#F3E8FF"
+                                    app:chipStrokeWidth="1dp"
+                                    app:chipStrokeColor="#C4B5FD" />
+
+                                <com.google.android.material.chip.Chip
+                                    android:id="@+id/chipFlowHeavy"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:minHeight="40dp"
+                                    android:text="Heavy"
+                                    android:checkable="true"
+                                    android:textColor="#6D28D9"
+                                    app:chipBackgroundColor="#F3E8FF"
+                                    app:chipStrokeWidth="1dp"
+                                    app:chipStrokeColor="#C4B5FD" />
+                            </com.google.android.material.chip.ChipGroup>
+
+                            <TextView
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="12dp"
+                                android:text="Symptoms"
+                                android:textStyle="bold"
+                                android:textColor="#6D28D9"
+                                android:textSize="13sp"/>
+
+                            <com.google.android.material.chip.ChipGroup
+                                android:id="@+id/chipGroupSymptoms"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="8dp"
+                                app:singleSelection="false"
+                                app:chipSpacingHorizontal="8dp"
+                                app:chipSpacingVertical="8dp">
+
+                                <com.google.android.material.chip.Chip
+                                    android:id="@+id/chipSymptomCramps"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:minHeight="40dp"
+                                    android:text="Cramps"
+                                    android:checkable="true"
+                                    android:textColor="#6D28D9"
+                                    app:chipBackgroundColor="#F3E8FF"
+                                    app:chipStrokeWidth="1dp"
+                                    app:chipStrokeColor="#C4B5FD" />
+
+                                <com.google.android.material.chip.Chip
+                                    android:id="@+id/chipSymptomHeadache"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:minHeight="40dp"
+                                    android:text="Headache"
+                                    android:checkable="true"
+                                    android:textColor="#6D28D9"
+                                    app:chipBackgroundColor="#F3E8FF"
+                                    app:chipStrokeWidth="1dp"
+                                    app:chipStrokeColor="#C4B5FD" />
+
+                                <com.google.android.material.chip.Chip
+                                    android:id="@+id/chipSymptomBloating"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:minHeight="40dp"
+                                    android:text="Bloating"
+                                    android:checkable="true"
+                                    android:textColor="#6D28D9"
+                                    app:chipBackgroundColor="#F3E8FF"
+                                    app:chipStrokeWidth="1dp"
+                                    app:chipStrokeColor="#C4B5FD" />
+
+                                <com.google.android.material.chip.Chip
+                                    android:id="@+id/chipSymptomAcne"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:minHeight="40dp"
+                                    android:text="Acne"
+                                    android:checkable="true"
+                                    android:textColor="#6D28D9"
+                                    app:chipBackgroundColor="#F3E8FF"
+                                    app:chipStrokeWidth="1dp"
+                                    app:chipStrokeColor="#C4B5FD" />
+
+                                <com.google.android.material.chip.Chip
+                                    android:id="@+id/chipSymptomFatigue"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:minHeight="40dp"
+                                    android:text="Fatigue"
+                                    android:checkable="true"
+                                    android:textColor="#6D28D9"
+                                    app:chipBackgroundColor="#F3E8FF"
+                                    app:chipStrokeWidth="1dp"
+                                    app:chipStrokeColor="#C4B5FD" />
+                            </com.google.android.material.chip.ChipGroup>
+
+                            <TextView
+                                android:id="@+id/tvMoodValue"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="12dp"
+                                android:text="Wellbeing: 3 / 5"
+                                android:textColor="#3B2A54"
+                                android:textSize="13sp"/>
+
+                            <androidx.appcompat.widget.AppCompatSeekBar
+                                android:id="@+id/sliderMood"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:max="4"
+                                android:progress="2"
+                                android:splitTrack="false"
+                                android:progressTint="#6D28D9"
+                                android:progressBackgroundTint="#EDE9FE"
+                                android:thumbTint="#6D28D9" />
+
+                            <TextView
+                                android:id="@+id/tvEnergyValue"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="10dp"
+                                android:text="Energy level: 3 / 5"
+                                android:textColor="#3B2A54"
+                                android:textSize="13sp"/>
+
+                            <androidx.appcompat.widget.AppCompatSeekBar
+                                android:id="@+id/sliderEnergy"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:max="4"
+                                android:progress="2"
+                                android:splitTrack="false"
+                                android:progressTint="#6D28D9"
+                                android:progressBackgroundTint="#EDE9FE"
+                                android:thumbTint="#6D28D9" />
+
+                            <TextView
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="12dp"
+                                android:layout_marginBottom="6dp"
+                                android:text="Optional note"
+                                android:textColor="#6D28D9"
+                                android:textSize="13sp"
+                                android:textStyle="bold"/>
+
+                            <com.google.android.material.textfield.TextInputLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                app:boxBackgroundMode="outline"
+                                app:boxBackgroundColor="#FBFAFF"
+                                app:boxCornerRadiusTopStart="20dp"
+                                app:boxCornerRadiusTopEnd="20dp"
+                                app:boxCornerRadiusBottomStart="20dp"
+                                app:boxCornerRadiusBottomEnd="20dp"
+                                app:boxStrokeColor="#C4B5FD"
+                                app:boxStrokeWidth="1dp"
+                                app:boxStrokeWidthFocused="2dp"
+                                app:hintTextColor="#6D28D9">
+
+                                <com.google.android.material.textfield.TextInputEditText
+                                    android:id="@+id/etDailyNote"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:minLines="2"
+                                    android:gravity="top"
+                                    android:inputType="textMultiLine"
+                                    android:background="@android:color/transparent"
+                                    android:hint="Type any notes here"
+                                    android:paddingStart="14dp"
+                                    android:paddingTop="14dp"
+                                    android:paddingEnd="14dp"
+                                    android:paddingBottom="14dp"
+                                    android:textColor="#24113D"
+                                    android:textColorHint="#8B7AA8"/>
+                            </com.google.android.material.textfield.TextInputLayout>
+
+                            <eightbitlab.com.blurview.BlurView
+                                android:id="@+id/blurBtnSaveDailyLog"
+                                android:layout_width="match_parent"
+                                android:layout_height="56dp"
+                                android:layout_marginTop="12dp"
+                                android:background="@android:color/transparent"
+                                app:blurOverlayColor="#14FFFFFF">
+
+                                <com.google.android.material.button.MaterialButton
+                                    android:id="@+id/btnSaveDailyLog"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="match_parent"
+                                    android:text="Save today’s log"
+                                    android:textAllCaps="false"
+                                    android:textStyle="bold"
+                                    android:textColor="#FFFFFF"
+                                    app:backgroundTint="#FB7185"
+                                    app:cornerRadius="999dp"
+                                    app:rippleColor="#22FFFFFF"
+                                    app:strokeColor="#FDA4AF"
+                                    app:strokeWidth="1dp"
+                                    app:icon="@android:drawable/ic_menu_edit"
+                                    app:iconTint="#FFFFFF"
+                                    app:iconGravity="textStart"
+                                    app:iconPadding="10dp"
+                                    android:insetLeft="0dp"
+                                    android:insetRight="0dp"
+                                    android:insetTop="0dp"
+                                    android:insetBottom="0dp"/>
+                            </eightbitlab.com.blurview.BlurView>
+
+                        </LinearLayout>
+                    </com.google.android.material.card.MaterialCardView>
+                </eightbitlab.com.blurview.BlurView>
+
+                <!-- PERIOD ESTIMATES -->
+                <eightbitlab.com.blurview.BlurView
+                    android:id="@+id/blurPredictionsCard"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="12dp"
+                    android:background="@android:color/transparent"
+                    app:blurOverlayColor="#14FFFFFF">
+
+                    <com.google.android.material.card.MaterialCardView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        app:cardBackgroundColor="#FFFFFFFF"
+                        app:cardCornerRadius="26dp"
+                        app:cardElevation="10dp"
+                        app:cardUseCompatPadding="true"
+                        app:strokeColor="#22A855F7"
+                        app:strokeWidth="1dp">
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:padding="16dp"
+                            android:orientation="vertical">
+
+                            <TextView
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:text="Period estimates"
+                                android:textStyle="bold"
+                                android:textColor="#24113D"
+                                android:textSize="15sp"/>
+
+                            <TextView
+                                android:id="@+id/tvNextPeriod"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="10dp"
+                                android:text="Next period (estimate): —"
+                                android:textColor="#3B2A54"
+                                android:textSize="14sp"/>
+
+                            <!-- Keep IDs for backwards compatibility with existing Java code,
+                                 but hide fertility-related rows in the UI. -->
+                            <TextView
+                                android:id="@+id/tvOvulation"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="6dp"
+                                android:text="Fertility estimates: Off"
+                                android:textColor="#3B2A54"
+                                android:textSize="14sp"
+                                android:visibility="gone"/>
+
+                            <TextView
+                                android:id="@+id/tvFertileWindow"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="6dp"
+                                android:text="Fertility estimates: Off"
+                                android:textColor="#3B2A54"
+                                android:textSize="14sp"
+                                android:visibility="gone"/>
+
+                            <eightbitlab.com.blurview.BlurView
+                                android:id="@+id/blurBtnLogPeriodToday"
+                                android:layout_width="match_parent"
+                                android:layout_height="56dp"
+                                android:layout_marginTop="12dp"
+                                android:background="@android:color/transparent"
+                                app:blurOverlayColor="#14FFFFFF">
+
+                                <com.google.android.material.button.MaterialButton
+                                    android:id="@+id/btnLogPeriodToday"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="match_parent"
+                                    android:text="Log period start (today)"
+                                    android:textAllCaps="false"
+                                    android:textStyle="bold"
+                                    android:textColor="#FFFFFF"
+                                    app:backgroundTint="#6D28D9"
+                                    app:cornerRadius="999dp"
+                                    app:rippleColor="#22FFFFFF"
+                                    app:strokeColor="#C4B5FD"
+                                    app:strokeWidth="1dp"
+                                    app:icon="@android:drawable/ic_input_add"
+                                    app:iconTint="#FFFFFF"
+                                    app:iconGravity="textStart"
+                                    app:iconPadding="10dp"
+                                    android:insetLeft="0dp"
+                                    android:insetRight="0dp"
+                                    android:insetTop="0dp"
+                                    android:insetBottom="0dp"/>
+                            </eightbitlab.com.blurview.BlurView>
+
+                        </LinearLayout>
+                    </com.google.android.material.card.MaterialCardView>
+                </eightbitlab.com.blurview.BlurView>
+
+                <!-- INSIGHTS -->
+                <eightbitlab.com.blurview.BlurView
+                    android:id="@+id/blurInsightsCard"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="12dp"
+                    android:background="@android:color/transparent"
+                    app:blurOverlayColor="#14FFFFFF">
+
+                    <com.google.android.material.card.MaterialCardView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        app:cardBackgroundColor="#FFFFFFFF"
+                        app:cardCornerRadius="26dp"
+                        app:cardElevation="10dp"
+                        app:cardUseCompatPadding="true"
+                        app:strokeColor="#22FB7185"
+                        app:strokeWidth="1dp">
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center_vertical"
+                            android:padding="16dp"
+                            android:orientation="vertical">
+
+                            <TextView
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:text="Insights"
+                                android:textStyle="bold"
+                                android:textColor="#24113D"
+                                android:textSize="14sp"/>
+
+                            <TextView
+                                android:id="@+id/tvInsightAvg"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="10dp"
+                                android:text="Average cycle: —"
+                                android:textColor="#3B2A54"
+                                android:textSize="13sp"/>
+
+                            <TextView
+                                android:id="@+id/tvInsightVar"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="6dp"
+                                android:text="Variability: —"
+                                android:textColor="#3B2A54"
+                                android:textSize="13sp"/>
+
+                            <TextView
+                                android:id="@+id/tvInsightCount"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="6dp"
+                                android:text="Logged cycles: —"
+                                android:textColor="#3B2A54"
+                                android:textSize="13sp"/>
+
+                        </LinearLayout>
+                    </com.google.android.material.card.MaterialCardView>
+                </eightbitlab.com.blurview.BlurView>
+
+                <!-- HISTORY -->
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="16dp"
+                    android:text="History"
+                    android:textStyle="bold"
+                    android:textSize="13sp"
+                    android:textColor="#6D28D9"/>
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/recyclerHistory"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp"
+                    android:nestedScrollingEnabled="false"
+                    android:clipToPadding="false"/>
+
+                <eightbitlab.com.blurview.BlurView
+                    android:id="@+id/blurBtnClearHistory"
+                    android:layout_width="match_parent"
+                    android:layout_height="56dp"
+                    android:layout_marginTop="12dp"
+                    android:background="@android:color/transparent"
+                    app:blurOverlayColor="#14FFFFFF">
+
+                    <com.google.android.material.button.MaterialButton
+                        android:id="@+id/btnClearHistory"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:text="Clear history"
+                        android:textAllCaps="false"
+                        android:textStyle="bold"
+                        android:textColor="#9F1239"
+                        app:backgroundTint="#FFE4E6"
+                        app:cornerRadius="999dp"
+                        app:rippleColor="#22000000"
+                        app:strokeColor="#FDA4AF"
+                        app:strokeWidth="1dp"
+                        app:icon="@android:drawable/ic_menu_delete"
+                        app:iconTint="#9F1239"
+                        app:iconGravity="textStart"
+                        app:iconPadding="10dp"
+                        android:insetLeft="0dp"
+                        android:insetRight="0dp"
+                        android:insetTop="0dp"
+                        android:insetBottom="0dp"/>
+                </eightbitlab.com.blurview.BlurView>
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="14dp"/>
+
+            </LinearLayout>
+        </androidx.core.widget.NestedScrollView>
+
+    </androidx.coordinatorlayout.widget.CoordinatorLayout>
+
+</FrameLayout>

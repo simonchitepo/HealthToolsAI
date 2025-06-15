@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layer-list xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <!-- Base: subtle vertical gradient (clinical fresh) -->
+    <item>
+        <shape android:shape="rectangle">
+            <gradient
+                android:type="linear"
+                android:angle="270"
+                android:startColor="#F7F9FC"
+                android:endColor="#F1F3F6"/>
+        </shape>
+    </item>
+
+    <!-- Top brand-tint wash (very low opacity, fades out) -->
+    <item>
+        <shape android:shape="rectangle">
+            <gradient
+                android:type="radial"
+                android:centerX="0.25"
+                android:centerY="0.0"
+                android:gradientRadius="520dp"
+                android:startColor="#0D2F80ED"
+                android:endColor="#002F80ED"/>
+        </shape>
+    </item>
+
+</layer-list>

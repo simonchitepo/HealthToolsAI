@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layer-list xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <!-- Track (background rail) -->
+    <item android:id="@android:id/background">
+        <shape android:shape="rectangle">
+            <corners android:radius="999dp" />
+            <solid android:color="#55FFFFFF" />
+        </shape>
+    </item>
+
+    <!-- Indeterminate moving waveform -->
+    <item android:id="@android:id/progress">
+        <clip>
+            <layer-list>
+
+                <!-- Base fill so it still feels like a bar -->
+                <item>
+                    <shape android:shape="rectangle">
+                        <corners android:radius="999dp" />
+                        <solid android:color="#220B5FA5" />
+                    </shape>
+                </item>
+
+                <!-- ECG line that moves (repeat via gradient stripes) -->
+                <item>
+                    <shape android:shape="rectangle">
+                        <corners android:radius="999dp" />
+                        <gradient
+                            android:type="linear"
+                            android:angle="0"
+                            android:startColor="#000B5FA5"
+                            android:centerColor="#FF0B5FA5"
+                            android:endColor="#000B5FA5"
+                            android:centerX="0.2" />
+                    </shape>
+                </item>
+
+            </layer-list>
+        </clip>
+    </item>
+
+</layer-list>

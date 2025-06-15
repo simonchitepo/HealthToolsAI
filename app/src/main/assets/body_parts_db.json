@@ -1,0 +1,34 @@
+{
+  "Head": {
+    "commonIssues": ["Tension headache", "Migraine symptoms", "Sinus congestion"],
+    "homeCare": [
+      "Hydrate and rest in a dark, quiet room",
+      "Cold or warm compress based on comfort",
+      "Reduce screen brightness and take breaks"
+    ],
+    "medicalInfo": [
+      "Some people consider OTC pain relief for short-term discomfort (follow label guidance)",
+      "If headaches are frequent, consider tracking triggers and discussing with a clinician"
+    ],
+    "redFlags": [
+      "Sudden severe headache ('worst ever')",
+      "Weakness, confusion, fainting, seizure",
+      "Headache with stiff neck and fever"
+    ]
+  },
+  "Chest": {
+    "commonIssues": ["Heartburn", "Muscle strain", "Respiratory irritation"],
+    "homeCare": [
+      "Rest and avoid heavy exertion if discomfort is new",
+      "If heartburn-like, avoid late meals and trigger foods"
+    ],
+    "medicalInfo": [
+      "Persistent or recurrent chest symptoms should be assessed clinically"
+    ],
+    "redFlags": [
+      "Chest pressure/tightness with shortness of breath",
+      "Pain radiating to jaw/arm, sweating, nausea",
+      "Fainting or severe breathing difficulty"
+    ]
+  }
+}

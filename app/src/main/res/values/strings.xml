@@ -1,0 +1,148 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <!-- =========================
+         App
+         ========================= -->
+    <string name="app_name">Health Tools AI: Doctor and Map</string>
+
+    <!-- =========================
+         Global / Common UI
+         ========================= -->
+    <string name="action_save">Save</string>
+    <string name="action_cancel">Cancel</string>
+    <string name="action_close">Close</string>
+    <string name="action_clear">Clear</string>
+    <string name="action_delete">Delete</string>
+    <string name="action_reset">Reset</string>
+    <string name="action_add">Add</string>
+    <string name="action_done">Done</string>
+
+    <string name="label_note_optional">Optional note</string>
+    <string name="label_severity">Severity</string>
+    <string name="label_date_started">Started</string>
+    <string name="label_today">Today</string>
+
+    <!-- =========================
+         Disclaimers
+         ========================= -->
+    <string name="disclaimer_general">
+        This information is for tracking and awareness only and does not replace professional medical advice.
+    </string>
+
+    <string name="disclaimer_not_emergency">
+        This is not an emergency service. If you experience severe or life-threatening symptoms, seek urgent medical care.
+    </string>
+
+    <!-- =========================
+         Diseases (Map / Filters)
+         ========================= -->
+    <string-array name="disease_list">
+        <item>All</item>
+        <item>Ebola</item>
+        <item>Anthrax</item>
+        <item>Cholera</item>
+        <item>COVID-19</item>
+        <item>HIV/AIDS</item>
+        <item>Tuberculosis</item>
+        <item>Malaria</item>
+        <item>Dengue</item>
+        <item>Zika</item>
+        <item>Typhoid</item>
+        <item>Influenza</item>
+        <item>Hepatitis</item>
+        <item>Measles</item>
+        <item>Lyme Disease</item>
+        <item>Sleeping Sickness</item>
+        <item>Schistosomiasis</item>
+        <item>Leishmaniasis</item>
+        <item>Amoebiasis</item>
+        <item>Giardiasis</item>
+        <item>Strep Throat</item>
+        <item>Syphilis</item>
+        <item>Tetanus</item>
+        <item>Candidiasis</item>
+        <item>Aspergillosis</item>
+        <item>Histoplasmosis</item>
+        <item>Ringworm</item>
+    </string-array>
+
+    <!-- =========================
+         Body Map
+         ========================= -->
+    <string name="body_map_title">Body Map</string>
+    <string name="body_map_subtitle">Track symptoms by body area</string>
+    <string name="body_map_new_entry">New symptom entry</string>
+    <string name="body_map_clear_all">Clear all entries</string>
+
+    <string-array name="body_areas">
+        <item>Head</item>
+        <item>Neck</item>
+        <item>Chest</item>
+        <item>Abdomen</item>
+        <item>Back</item>
+        <item>Arms</item>
+        <item>Legs</item>
+        <item>Skin</item>
+        <item>Other</item>
+    </string-array>
+
+    <!-- =========================
+         Healthy Groceries
+         ========================= -->
+    <string name="groceries_title">Healthy Groceries</string>
+    <string name="groceries_subtitle">Smart checklist</string>
+    <string name="groceries_clear_all">Clear all selections</string>
+    <string name="groceries_add_item">Add item</string>
+
+    <string-array name="grocery_categories">
+        <item>Produce</item>
+        <item>Proteins</item>
+        <item>Whole grains</item>
+        <item>Dairy or alternatives</item>
+        <item>Pantry</item>
+        <item>Hydration</item>
+        <item>Household</item>
+    </string-array>
+
+    <!-- =========================
+         Smoking Cessation
+         ========================= -->
+    <string name="smoking_title">Smoking Cessation</string>
+    <string name="smoking_subtitle">Quit plan, streak &amp; savings</string>
+    <string name="smoking_quit_date">Quit date</string>
+    <string name="smoking_cigs_per_day">Cigarettes per day</string>
+    <string name="smoking_cost_per_pack">Cost per pack</string>
+    <string name="smoking_cigs_per_pack">Cigarettes per pack</string>
+    <string name="smoking_save_plan">Save plan</string>
+    <string name="smoking_reset">Reset quit plan</string>
+
+    <!-- =========================
+         Weight Goals
+         ========================= -->
+    <string name="weight_goals_title">Weight Goals</string>
+    <string name="weight_start">Start weight</string>
+    <string name="weight_target">Target weight</string>
+    <string name="weight_target_date">Target date</string>
+    <string name="weight_log">Log weigh-in</string>
+    <string name="weight_clear_all">Clear all weight data</string>
+
+    <!-- =========================
+         Pregnancy Tracker
+         ========================= -->
+    <string name="pregnancy_title">Pregnancy Tracker</string>
+    <string name="pregnancy_due_date">Due date</string>
+    <string name="pregnancy_week_by_week">Week-by-week progress</string>
+    <string name="pregnancy_clear_all">Clear pregnancy data</string>
+
+    <!-- =========================
+         Mental Health (future-safe)
+         ========================= -->
+    <string name="mental_health_title">Mental Health</string>
+    <string name="mental_health_mood_check">Mood check-in</string>
+    <string name="mental_health_journal">Journal entry</string>
+        <string name="openai_proxy_url">http://10.0.2.2:8787/chat</string>
+
+
+</resources>
+

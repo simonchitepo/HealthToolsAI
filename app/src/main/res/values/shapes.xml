@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <!-- =========================
+         Zealth Shape System (compat)
+         Works on Material Components without requiring Material3-specific parents
+         ========================= -->
+
+    <!-- Small components (chips, pills) -->
+    <style name="ShapeAppearance.Zealth.Small" parent="ShapeAppearance.MaterialComponents.SmallComponent">
+        <item name="cornerFamily">rounded</item>
+        <item name="cornerSize">12dp</item>
+    </style>
+
+    <!-- Medium components (cards, dialogs, inputs) -->
+    <style name="ShapeAppearance.Zealth.Medium" parent="ShapeAppearance.MaterialComponents.MediumComponent">
+        <item name="cornerFamily">rounded</item>
+        <item name="cornerSize">16dp</item>
+    </style>
+
+    <!-- Large components (bottom sheets, main CTAs) -->
+    <style name="ShapeAppearance.Zealth.Large" parent="ShapeAppearance.MaterialComponents.LargeComponent">
+        <item name="cornerFamily">rounded</item>
+        <item name="cornerSize">28dp</item>
+    </style>
+
+    <!-- Extra large surfaces (full-width panels) -->
+    <style name="ShapeAppearance.Zealth.ExtraLarge" parent="ShapeAppearance.MaterialComponents.LargeComponent">
+        <item name="cornerFamily">rounded</item>
+        <item name="cornerSize">32dp</item>
+    </style>
+
+    <!-- =========================
+         Component-specific aliases
+         ========================= -->
+
+    <style name="ShapeAppearance.Zealth.Card" parent="ShapeAppearance.Zealth.Medium"/>
+    <style name="ShapeAppearance.Zealth.Button" parent="ShapeAppearance.Zealth.Medium"/>
+    <style name="ShapeAppearance.Zealth.Pill" parent="ShapeAppearance.Zealth.Small"/>
+    <style name="ShapeAppearance.Zealth.BottomSheet" parent="ShapeAppearance.Zealth.Large"/>
+
+</resources>

@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layer-list xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <!-- Base background -->
+    <item android:drawable="@color/zealth_bg"/>
+
+    <!-- Soft accent blob 1 (top-left) -->
+    <item>
+        <shape android:shape="rectangle">
+            <gradient
+                android:type="radial"
+                android:gradientRadius="700dp"
+                android:centerX="0.12"
+                android:centerY="0.00"
+                android:startColor="#242A7FFF"
+                android:endColor="#00FFFFFF"/>
+        </shape>
+    </item>
+
+    <!-- Soft accent blob 2 (top-right) -->
+    <item>
+        <shape android:shape="rectangle">
+            <gradient
+                android:type="radial"
+                android:gradientRadius="700dp"
+                android:centerX="0.88"
+                android:centerY="0.10"
+                android:startColor="#1F7C5CFF"
+                android:endColor="#00FFFFFF"/>
+        </shape>
+    </item>
+
+    <!-- Soft dark-ish vignette (bottom) -->
+    <item>
+        <shape android:shape="rectangle">
+            <gradient
+                android:type="radial"
+                android:gradientRadius="900dp"
+                android:centerX="0.50"
+                android:centerY="1.00"
+                android:startColor="#10000000"
+                android:endColor="#00FFFFFF"/>
+        </shape>
+    </item>
+</layer-list>

@@ -1,0 +1,12 @@
+Open-source licenses
+
+This app may include open-source software components. Replace this file with the actual license texts required by the libraries you ship.
+
+Suggested entries (examples):
+- AndroidX libraries (Apache License 2.0)
+- Material Components for Android (Apache License 2.0)
+- Retrofit/OkHttp (Apache License 2.0), if used
+- Any other third-party libraries
+
+Apache License 2.0 text:
+https://www.apache.org/licenses/LICENSE-2.0

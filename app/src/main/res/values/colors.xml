@@ -1,0 +1,159 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <!-- =========================================================
+         ZEALTH BRAND PALETTE (Corporate / Medical / Glass UI)
+         + iOS-like System Palette for iOS-styled screens
+         ========================================================= -->
+
+    <!-- =========================
+         State colors (defined first so aliases always resolve)
+         ========================= -->
+    <color name="zealth_success">#1E8E5A</color>
+    <color name="zealth_warning">#F59E0B</color>
+    <color name="zealth_error">#D32F2F</color>
+    <color name="zealth_info">#0EA5E9</color>
+
+    <!-- =========================
+         Backward-compatible aliases
+         ========================= -->
+    <color name="warning_orange">@color/zealth_warning</color>
+    <color name="error_red">@color/zealth_error</color>
+    <color name="success_green">@color/zealth_success</color>
+    <color name="info_cyan">@color/zealth_info</color>
+
+    <!-- =========================
+         Primary brand colors (teal-blue)
+         ========================= -->
+    <color name="zealth_primary">#0B5FA5</color>
+    <color name="zealth_primary_variant">#084B83</color>
+    <color name="zealth_on_primary">#FFFFFF</color>
+
+    <!-- Opacity variants (AARRGGBB) -->
+    <color name="zealth_primary_88">#E00B5FA5</color>   <!-- 88% -->
+    <color name="zealth_primary_22">#380B5FA5</color>   <!-- 22% -->
+
+    <!-- =========================
+         Secondary (supporting accent)
+         ========================= -->
+    <color name="zealth_secondary">#0EA5E9</color>
+    <color name="zealth_secondary_variant">#0284C7</color>
+    <color name="zealth_on_secondary">#FFFFFF</color>
+
+    <!-- =========================
+         Containers (Material-style)
+         ========================= -->
+    <color name="primary_container">#D6ECFF</color>
+    <color name="on_primary_container">#073A63</color>
+
+    <!-- =========================
+         Backgrounds
+         ========================= -->
+    <color name="zealth_background">#071C26</color>
+
+    <!-- =========================
+         Surfaces (glass / cards)
+         ========================= -->
+    <color name="zealth_surface">#FFFFFFFF</color>
+
+    <!-- Semi-transparent surfaces (AARRGGBB) -->
+    <color name="zealth_surface_88">#E0FFFFFF</color>          <!-- 88% white -->
+    <color name="zealth_surface_variant">#CCF2F7FF</color>     <!-- 80% cool white -->
+    <color name="zealth_surface_variant_80">#CCEEF2FF</color>
+
+    <!-- =========================
+         Text on surfaces
+         ========================= -->
+    <color name="zealth_on_surface">#0B1F2A</color>
+    <color name="zealth_on_surface_variant">#415A67</color>
+
+    <!-- =========================
+         Borders / dividers / outlines
+         ========================= -->
+    <color name="zealth_outline">#66FFFFFF</color>             <!-- 40% white -->
+    <color name="zealth_divider">#33FFFFFF</color>             <!-- 20% white -->
+
+    <!-- =========================
+         Map / risk overlays
+         ========================= -->
+    <color name="zone_risk_high">#88D32F2F</color>
+    <color name="zone_risk_med">#88F59E0B</color>
+
+    <!-- =========================
+         Neutral / legacy
+         ========================= -->
+    <color name="black">#0B1F2A</color>
+    <color name="white">#FFFFFF</color>
+
+    <!-- =========================
+         Glass UI palette
+         ========================= -->
+    <color name="glass_stroke">#33FFFFFF</color>       <!-- subtle white stroke -->
+    <color name="glass_sheet">#1AFFFFFF</color>        <!-- translucent sheet background -->
+    <color name="glass_card_inner">#14FFFFFF</color>   <!-- inner card tint -->
+
+    <!-- =========================================================
+         iOS-like system palette (for iOS-styled BMI screen)
+         ========================================================= -->
+
+    <!-- iOS-like neutrals -->
+    <color name="iosGroupedBackground">#FFF2F2F7</color>
+    <color name="iosSecondaryGroupedBackground">#FFFFFFFF</color>
+    <color name="iosTertiaryFill">#FFF2F2F7</color>
+    <color name="iosSeparator">#FFE5E5EA</color>
+
+    <color name="iosLabel">#FF000000</color>
+    <color name="iosSecondaryLabel">#FF6D6D72</color>
+
+    <!-- iOS system colors -->
+    <color name="iosBlue">#FF007AFF</color>
+    <color name="iosGreen">#FF34C759</color>
+    <color name="iosOrange">#FFFF9500</color>
+    <color name="iosRed">#FFFF3B30</color>
+    <color name="iosTeal">#FF5AC8FA</color>
+    <color name="iosGray">#FF8E8E93</color>
+
+    <!-- Soft band fill (healthy band on chart) -->
+    <color name="iosGreenSoft">#3334C759</color>
+
+    <!-- Optional convenience mapping -->
+    <color name="ios_success">@color/iosGreen</color>
+    <color name="ios_warning">@color/iosOrange</color>
+    <color name="ios_error">@color/iosRed</color>
+    <color name="ios_info">@color/iosTeal</color>
+
+    <!-- iOS-like fills -->
+    <color name="iosFill">#FFFFFFFF</color>
+    <color name="iosSecondaryFill">#FFF2F2F7</color>
+    <color name="iosQuaternaryFill">#FFE5E5EA</color>
+    <!-- Glass card backgrounds -->
+    <color name="glass_card_bg">#33FFFFFF</color>
+    <color name="glass_card_bg_strong">#40FFFFFF</color>
+
+    <!-- Stronger filled background for inputs -->
+    <color name="glass_sheet_strong">#80FFFFFF</color>
+
+    <!-- Hint color on glass input -->
+    <color name="glass_hint">#CCFFFFFF</color>
+    <color name="zealth_bg">#F6F7FB</color>
+
+    <!-- translucent surfaces -->
+    <!-- ~0.56 alpha -->
+    <color name="zealth_surface2">#6BFFFFFF</color>  <!-- ~0.42 alpha -->
+
+    <!-- ink / muted / line -->
+    <color name="zealth_ink">#EB0C0F17</color>       <!-- ~0.92 alpha -->
+    <color name="zealth_muted">#9E0C0F17</color>     <!-- ~0.62 alpha -->
+    <color name="zealth_line">#1A0C0F17</color>      <!-- ~0.10 alpha -->
+
+    <!-- accents -->
+    <color name="zealth_accent">#2A7FFF</color>
+    <color name="zealth_accent2">#7C5CFF</color>
+
+    <!-- optional overlay/dim -->
+    <color name="zealth_dimOverlay">#14FFFFFF</color>
+    <!-- subtle light veil -->
+    <color name="zealth_search_bg">#F5F6F8</color>
+    <color name="zealth_outline_soft">#1A000000</color>
+
+</resources>

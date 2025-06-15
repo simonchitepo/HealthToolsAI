@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<selector xmlns:android="http://schemas.android.com/apk/res/android">
+    <!-- Selected: stronger brand stroke -->
+    <item android:state_checked="true" android:color="@color/zealth_primary_88"/>
+    <!-- Unselected: subtle glass stroke -->
+    <item android:color="@color/glass_stroke"/>
+</selector>

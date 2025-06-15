@@ -1,0 +1,541 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/root"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:fitsSystemWindows="true"
+    android:background="#EEF6FF">
+
+    <!-- Keep BlurTarget so your existing blur setup code (if any) still works -->
+    <eightbitlab.com.blurview.BlurTarget
+        android:id="@+id/blurTarget"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <!-- Background image (softened) -->
+        <ImageView
+            android:id="@+id/bgImage"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:src="@drawable/pregnancy_bg"
+            android:scaleType="centerCrop"
+            android:alpha="0.06"
+            android:contentDescription="@null" />
+
+        <!-- Blue-tinted veil (light, health vibe) -->
+        <View
+            android:id="@+id/dimOverlay"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:alpha="0.92"
+            android:background="#F7FBFF" />
+
+        <!-- Top accent wash -->
+        <View
+            android:id="@+id/topAccentWash"
+            android:layout_width="match_parent"
+            android:layout_height="230dp"
+            android:layout_gravity="top"
+            android:alpha="0.22"
+            android:background="#3B82F6" />
+
+    </eightbitlab.com.blurview.BlurTarget>
+
+    <!-- FOREGROUND -->
+    <androidx.coordinatorlayout.widget.CoordinatorLayout
+        android:id="@+id/contentRoot"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@android:color/transparent">
+
+        <!-- Toolbar -->
+        <eightbitlab.com.blurview.BlurView
+            android:id="@+id/blurToolbar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@android:color/transparent"
+            app:blurOverlayColor="#10FFFFFF">
+
+            <com.google.android.material.card.MaterialCardView
+                android:id="@+id/toolbarCard"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="12dp"
+                android:layout_marginEnd="16dp"
+                app:cardBackgroundColor="#F2F7FF"
+                app:cardCornerRadius="26dp"
+                app:cardElevation="10dp"
+                app:cardUseCompatPadding="true"
+                app:strokeColor="#9AC7E5FF"
+                app:strokeWidth="1dp">
+
+                <com.google.android.material.appbar.MaterialToolbar
+                    android:id="@+id/toolbar"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@android:color/transparent"
+                    app:title="Pregnancy Tracker"
+                    app:subtitle="Date estimates and weekly check-ins"
+                    app:titleTextColor="#0B1B3A"
+                    app:subtitleTextColor="#2B5AA6"
+                    app:navigationIcon="@drawable/ic_back_medical"
+                    app:navigationIconTint="#2563EB" />
+            </com.google.android.material.card.MaterialCardView>
+        </eightbitlab.com.blurview.BlurView>
+
+        <androidx.core.widget.NestedScrollView
+            android:id="@+id/scroll"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginTop="94dp"
+            android:fillViewport="true"
+            android:paddingStart="16dp"
+            android:paddingTop="12dp"
+            android:paddingEnd="16dp"
+            android:paddingBottom="18dp"
+            android:clipToPadding="false"
+            android:overScrollMode="never">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <!-- Disclaimer card -->
+                <eightbitlab.com.blurview.BlurView
+                    android:id="@+id/blurDisclaimerCard"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@android:color/transparent"
+                    app:blurOverlayColor="#10FFFFFF">
+
+                    <com.google.android.material.card.MaterialCardView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        app:cardBackgroundColor="#FFFFFF"
+                        app:cardCornerRadius="26dp"
+                        app:cardElevation="10dp"
+                        app:cardUseCompatPadding="true"
+                        app:strokeColor="#9AC7E5FF"
+                        app:strokeWidth="1dp">
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:padding="16dp"
+                            android:orientation="vertical">
+
+                            <TextView
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:text="Note"
+                                android:textStyle="bold"
+                                android:textColor="#0B1B3A"
+                                android:textSize="14sp"/>
+
+                            <TextView
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="6dp"
+                                android:text="This feature is for personal tracking and planning. It provides date estimates and general, non-medical information. It does not diagnose, treat, or prevent any condition. If you have health questions or concerns, contact a qualified healthcare professional. If you believe you may be experiencing an emergency, contact local emergency services."
+                                android:textColor="#2B5AA6"
+                                android:textSize="13sp"
+                                android:lineSpacingExtra="2dp"/>
+                        </LinearLayout>
+
+                    </com.google.android.material.card.MaterialCardView>
+                </eightbitlab.com.blurview.BlurView>
+
+                <!-- Mode toggle -->
+                <com.google.android.material.card.MaterialCardView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="12dp"
+                    app:cardBackgroundColor="#FFFFFF"
+                    app:cardCornerRadius="26dp"
+                    app:cardElevation="10dp"
+                    app:cardUseCompatPadding="true"
+                    app:strokeColor="#9AC7E5FF"
+                    app:strokeWidth="1dp">
+
+                    <com.google.android.material.button.MaterialButtonToggleGroup
+                        android:id="@+id/toggleMode"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:padding="12dp"
+                        app:singleSelection="true"
+                        app:selectionRequired="true">
+
+                        <com.google.android.material.button.MaterialButton
+                            android:id="@+id/btnModeDueDate"
+                            style="?attr/materialButtonOutlinedStyle"
+                            android:layout_width="0dp"
+                            android:layout_height="48dp"
+                            android:layout_weight="1"
+                            android:text="I know my due date"
+                            android:textAllCaps="false"
+                            android:textStyle="bold"
+                            android:textColor="#0B1B3A"
+                            app:backgroundTint="#E7F0FF"
+                            app:cornerRadius="18dp"
+                            app:strokeColor="#60A5FA"
+                            app:strokeWidth="1dp"
+                            app:rippleColor="#223B82F6" />
+
+                        <Space
+                            android:layout_width="10dp"
+                            android:layout_height="1dp" />
+
+                        <com.google.android.material.button.MaterialButton
+                            android:id="@+id/btnModeLmp"
+                            style="?attr/materialButtonOutlinedStyle"
+                            android:layout_width="0dp"
+                            android:layout_height="48dp"
+                            android:layout_weight="1"
+                            android:text="I know my LMP"
+                            android:textAllCaps="false"
+                            android:textStyle="bold"
+                            android:textColor="#2B5AA6"
+                            app:backgroundTint="#F2F7FF"
+                            app:cornerRadius="18dp"
+                            app:strokeColor="#93C5FD"
+                            app:strokeWidth="1dp"
+                            app:rippleColor="#2293C5FD" />
+                    </com.google.android.material.button.MaterialButtonToggleGroup>
+                </com.google.android.material.card.MaterialCardView>
+
+                <!-- Empty state -->
+                <eightbitlab.com.blurview.BlurView
+                    android:id="@+id/cardEmptyState"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="12dp"
+                    android:background="@android:color/transparent"
+                    app:blurOverlayColor="#10FFFFFF">
+
+                    <com.google.android.material.card.MaterialCardView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        app:cardBackgroundColor="#FFFFFF"
+                        app:cardCornerRadius="26dp"
+                        app:cardElevation="10dp"
+                        app:cardUseCompatPadding="true"
+                        app:strokeColor="#9AC7E5FF"
+                        app:strokeWidth="1dp">
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:padding="16dp"
+                            android:orientation="vertical">
+
+                            <TextView
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:text="Set your date to begin"
+                                android:textStyle="bold"
+                                android:textColor="#0B1B3A"
+                                android:textSize="15sp"/>
+
+                            <TextView
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="6dp"
+                                android:text="Choose either your due date or the start date of your last menstrual period (LMP). We’ll calculate date estimates and show week-by-week check-ins."
+                                android:textColor="#2B5AA6"
+                                android:textSize="13sp"
+                                android:lineSpacingExtra="2dp"/>
+
+                            <eightbitlab.com.blurview.BlurView
+                                android:id="@+id/blurPickDateEmpty"
+                                android:layout_width="match_parent"
+                                android:layout_height="56dp"
+                                android:layout_marginTop="12dp"
+                                android:background="@android:color/transparent"
+                                app:blurOverlayColor="#10FFFFFF">
+
+                                <com.google.android.material.button.MaterialButton
+                                    android:id="@+id/btnPickDateEmpty"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="match_parent"
+                                    android:text="Set date"
+                                    android:textAllCaps="false"
+                                    android:textStyle="bold"
+                                    android:textColor="#FFFFFF"
+                                    app:backgroundTint="#2563EB"
+                                    app:cornerRadius="999dp"
+                                    app:rippleColor="#22FFFFFF"
+                                    app:strokeColor="#60A5FA"
+                                    app:strokeWidth="1dp"
+                                    app:icon="@android:drawable/ic_menu_my_calendar"
+                                    app:iconGravity="textStart"
+                                    app:iconPadding="10dp"
+                                    app:iconTint="#FFFFFF"
+                                    android:insetLeft="0dp"
+                                    android:insetRight="0dp"
+                                    android:insetTop="0dp"
+                                    android:insetBottom="0dp"/>
+                            </eightbitlab.com.blurview.BlurView>
+
+                        </LinearLayout>
+                    </com.google.android.material.card.MaterialCardView>
+                </eightbitlab.com.blurview.BlurView>
+
+                <!-- Summary -->
+                <eightbitlab.com.blurview.BlurView
+                    android:id="@+id/cardSummary"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="12dp"
+                    android:background="@android:color/transparent"
+                    app:blurOverlayColor="#10FFFFFF">
+
+                    <com.google.android.material.card.MaterialCardView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        app:cardBackgroundColor="#FFFFFF"
+                        app:cardCornerRadius="26dp"
+                        app:cardElevation="10dp"
+                        app:cardUseCompatPadding="true"
+                        app:strokeColor="#9AC7E5FF"
+                        app:strokeWidth="1dp">
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:padding="16dp"
+                            android:orientation="vertical">
+
+                            <TextView
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:text="Pregnancy overview"
+                                android:textStyle="bold"
+                                android:textColor="#0B1B3A"
+                                android:textSize="15sp"/>
+
+                            <eightbitlab.com.blurview.BlurView
+                                android:id="@+id/blurPickDate"
+                                android:layout_width="match_parent"
+                                android:layout_height="56dp"
+                                android:layout_marginTop="10dp"
+                                android:background="@android:color/transparent"
+                                app:blurOverlayColor="#10FFFFFF">
+
+                                <com.google.android.material.button.MaterialButton
+                                    android:id="@+id/btnPickDate"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="match_parent"
+                                    android:text="Set date"
+                                    android:textAllCaps="false"
+                                    android:textStyle="bold"
+                                    android:textColor="#FFFFFF"
+                                    app:backgroundTint="#2563EB"
+                                    app:cornerRadius="999dp"
+                                    app:rippleColor="#22FFFFFF"
+                                    app:strokeColor="#60A5FA"
+                                    app:strokeWidth="1dp"
+                                    app:icon="@android:drawable/ic_menu_my_calendar"
+                                    app:iconGravity="textStart"
+                                    app:iconPadding="10dp"
+                                    app:iconTint="#FFFFFF"
+                                    android:insetLeft="0dp"
+                                    android:insetRight="0dp"
+                                    android:insetTop="0dp"
+                                    android:insetBottom="0dp"/>
+                            </eightbitlab.com.blurview.BlurView>
+
+                            <TextView
+                                android:id="@+id/tvProgressLabel"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="12dp"
+                                android:text="Week — of 40"
+                                android:textStyle="bold"
+                                android:textColor="#2B5AA6"
+                                android:textSize="13sp"/>
+
+                            <com.google.android.material.progressindicator.LinearProgressIndicator
+                                android:id="@+id/progressGestation"
+                                android:layout_width="match_parent"
+                                android:layout_height="10dp"
+                                android:layout_marginTop="8dp"
+                                app:trackCornerRadius="999dp"
+                                app:indicatorTrackGapSize="0dp"
+                                app:indicatorColor="#2563EB"
+                                app:trackColor="#D6E6FF"/>
+
+                            <TextView
+                                android:id="@+id/tvGestation"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="10dp"
+                                android:text="Gestation: —"
+                                android:textColor="#2B5AA6"
+                                android:textSize="14sp"/>
+
+                            <TextView
+                                android:id="@+id/tvTrimester"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="6dp"
+                                android:text="Trimester: —"
+                                android:textColor="#2B5AA6"
+                                android:textSize="14sp"/>
+
+                            <TextView
+                                android:id="@+id/tvDaysRemaining"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="6dp"
+                                android:text="Days remaining: —"
+                                android:textColor="#2B5AA6"
+                                android:textSize="14sp"/>
+
+                            <TextView
+                                android:id="@+id/tvConceptionEstimate"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="6dp"
+                                android:text="Estimated conception: —"
+                                android:textColor="#2B5AA6"
+                                android:textSize="14sp"/>
+
+                            <TextView
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="12dp"
+                                android:layout_marginBottom="6dp"
+                                android:text="Optional notes"
+                                android:textColor="#2B5AA6"
+                                android:textSize="13sp"
+                                android:textStyle="bold"/>
+
+                            <com.google.android.material.textfield.TextInputLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                app:boxBackgroundMode="outline"
+                                app:boxBackgroundColor="#F7FBFF"
+                                app:boxCornerRadiusTopStart="20dp"
+                                app:boxCornerRadiusTopEnd="20dp"
+                                app:boxCornerRadiusBottomStart="20dp"
+                                app:boxCornerRadiusBottomEnd="20dp"
+                                app:boxStrokeColor="#93C5FD"
+                                app:boxStrokeWidth="1dp"
+                                app:boxStrokeWidthFocused="2dp"
+                                app:hintTextColor="#3B82F6">
+
+                                <com.google.android.material.textfield.TextInputEditText
+                                    android:id="@+id/etNotes"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:minLines="2"
+                                    android:gravity="top"
+                                    android:inputType="textMultiLine"
+                                    android:background="@android:color/transparent"
+                                    android:hint="Add notes for your personal reference"
+                                    android:paddingStart="14dp"
+                                    android:paddingTop="14dp"
+                                    android:paddingEnd="14dp"
+                                    android:paddingBottom="14dp"
+                                    android:textColor="#0B1B3A"
+                                    android:textColorHint="#7AA7E8"/>
+                            </com.google.android.material.textfield.TextInputLayout>
+
+                            <eightbitlab.com.blurview.BlurView
+                                android:id="@+id/blurSaveNotes"
+                                android:layout_width="match_parent"
+                                android:layout_height="56dp"
+                                android:layout_marginTop="12dp"
+                                android:background="@android:color/transparent"
+                                app:blurOverlayColor="#10FFFFFF">
+
+                                <com.google.android.material.button.MaterialButton
+                                    android:id="@+id/btnSaveNotes"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="match_parent"
+                                    android:text="Save notes"
+                                    android:textAllCaps="false"
+                                    android:textStyle="bold"
+                                    android:textColor="#FFFFFF"
+                                    app:backgroundTint="#2563EB"
+                                    app:cornerRadius="999dp"
+                                    app:rippleColor="#22FFFFFF"
+                                    app:strokeColor="#60A5FA"
+                                    app:strokeWidth="1dp"
+                                    app:icon="@android:drawable/ic_menu_save"
+                                    app:iconGravity="textStart"
+                                    app:iconPadding="10dp"
+                                    app:iconTint="#FFFFFF"
+                                    android:insetLeft="0dp"
+                                    android:insetRight="0dp"
+                                    android:insetTop="0dp"
+                                    android:insetBottom="0dp"/>
+                            </eightbitlab.com.blurview.BlurView>
+
+                        </LinearLayout>
+                    </com.google.android.material.card.MaterialCardView>
+                </eightbitlab.com.blurview.BlurView>
+
+                <TextView
+                    android:id="@+id/tvWeekHeader"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="16dp"
+                    android:text="Week-by-week check-ins"
+                    android:textStyle="bold"
+                    android:textSize="13sp"
+                    android:textColor="#2B5AA6"/>
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/recyclerWeeks"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp"
+                    android:nestedScrollingEnabled="false"
+                    android:clipToPadding="false"/>
+
+                <eightbitlab.com.blurview.BlurView
+                    android:id="@+id/blurClearPregnancy"
+                    android:layout_width="match_parent"
+                    android:layout_height="56dp"
+                    android:layout_marginTop="12dp"
+                    android:background="@android:color/transparent"
+                    app:blurOverlayColor="#10FFFFFF">
+
+                    <com.google.android.material.button.MaterialButton
+                        android:id="@+id/btnClearPregnancy"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:text="Clear pregnancy data"
+                        android:textAllCaps="false"
+                        android:textStyle="bold"
+                        android:textColor="#1D4ED8"
+                        app:backgroundTint="#DBEAFE"
+                        app:cornerRadius="999dp"
+                        app:rippleColor="#22000000"
+                        app:strokeColor="#93C5FD"
+                        app:strokeWidth="1dp"
+                        app:icon="@android:drawable/ic_menu_delete"
+                        app:iconGravity="textStart"
+                        app:iconPadding="10dp"
+                        app:iconTint="#1D4ED8"
+                        android:insetLeft="0dp"
+                        android:insetRight="0dp"
+                        android:insetTop="0dp"
+                        android:insetBottom="0dp"/>
+                </eightbitlab.com.blurview.BlurView>
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="18dp"/>
+
+            </LinearLayout>
+        </androidx.core.widget.NestedScrollView>
+
+    </androidx.coordinatorlayout.widget.CoordinatorLayout>
+
+</FrameLayout>

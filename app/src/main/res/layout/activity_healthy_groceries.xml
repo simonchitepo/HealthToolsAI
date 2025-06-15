@@ -1,0 +1,257 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.coordinatorlayout.widget.CoordinatorLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/root"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#121212"
+    android:fitsSystemWindows="true">
+
+    <!-- Header gradient (Spotify-like) -->
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="260dp"
+        android:background="@drawable/bg_spotify_header" />
+
+    <com.google.android.material.appbar.AppBarLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@android:color/transparent"
+        android:elevation="0dp">
+
+        <com.google.android.material.appbar.MaterialToolbar
+            android:id="@+id/toolbar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@android:color/transparent"
+            app:navigationIcon="@drawable/ic_arrow_back_24"
+            app:navigationIconTint="#FFFFFF"
+            app:title="Healthy Groceries"
+            app:titleTextColor="#FFFFFF"
+            app:subtitle="Your cart, organized"
+            app:subtitleTextColor="#B3B3B3"/>
+    </com.google.android.material.appbar.AppBarLayout>
+
+    <androidx.core.widget.NestedScrollView
+        android:id="@+id/scroll"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:clipToPadding="false"
+        android:fillViewport="true"
+        android:overScrollMode="never"
+        android:paddingStart="16dp"
+        android:paddingEnd="16dp"
+        android:paddingTop="8dp"
+        android:paddingBottom="120dp"
+        app:layout_behavior="@string/appbar_scrolling_view_behavior">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <!-- Stats / Search / Filters card -->
+            <com.google.android.material.card.MaterialCardView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:cardBackgroundColor="#181818"
+                app:cardCornerRadius="22dp"
+                app:cardElevation="0dp"
+                app:strokeColor="#2A2A2A"
+                app:strokeWidth="1dp">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:padding="16dp">
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="Progress"
+                        android:textColor="#FFFFFF"
+                        android:textStyle="bold"
+                        android:textSize="16sp"/>
+
+                    <TextView
+                        android:id="@+id/tvStats"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="6dp"
+                        android:text="0 / 0 in cart • 0%"
+                        android:textColor="#B3B3B3"
+                        android:textSize="13sp"/>
+
+                    <com.google.android.material.progressindicator.LinearProgressIndicator
+                        android:id="@+id/progressCompletion"
+                        android:layout_width="match_parent"
+                        android:layout_height="10dp"
+                        android:layout_marginTop="12dp"
+                        android:indeterminate="false"
+                        app:indicatorColor="#1DB954"
+                        app:trackColor="#2A2A2A"
+                        app:trackCornerRadius="999dp"
+                        app:trackThickness="8dp"/>
+
+                    <!-- Search -->
+                    <com.google.android.material.textfield.TextInputLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="14dp"
+                        android:hint="Search items"
+                        app:startIconDrawable="@drawable/ic_search_24"
+                        app:startIconTint="#B3B3B3"
+                        app:boxBackgroundColor="#1E1E1E"
+                        app:boxBackgroundMode="filled"
+                        app:boxCornerRadiusTopStart="16dp"
+                        app:boxCornerRadiusTopEnd="16dp"
+                        app:boxCornerRadiusBottomStart="16dp"
+                        app:boxCornerRadiusBottomEnd="16dp"
+                        app:hintEnabled="true"
+                        app:hintTextColor="#B3B3B3">
+
+                        <com.google.android.material.textfield.TextInputEditText
+                            android:id="@+id/etSearch"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:padding="12dp"
+                            android:singleLine="true"
+                            android:textSize="14sp"
+                            android:textColor="#FFFFFF"
+                            android:textColorHint="#B3B3B3"/>
+                    </com.google.android.material.textfield.TextInputLayout>
+
+                    <!-- Category jump dropdown -->
+                    <com.google.android.material.textfield.TextInputLayout
+                        android:id="@+id/tilCategory"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="12dp"
+                        android:hint="Jump to category"
+                        app:endIconMode="dropdown_menu"
+                        app:boxBackgroundMode="filled"
+                        app:boxBackgroundColor="#1E1E1E"
+                        app:boxCornerRadiusTopStart="16dp"
+                        app:boxCornerRadiusTopEnd="16dp"
+                        app:boxCornerRadiusBottomStart="16dp"
+                        app:boxCornerRadiusBottomEnd="16dp"
+                        app:hintTextColor="#B3B3B3"
+                        app:endIconTint="#B3B3B3">
+
+                        <com.google.android.material.textfield.MaterialAutoCompleteTextView
+                            android:id="@+id/actCategory"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:inputType="none"
+                            android:textColor="#FFFFFF"
+                            android:textColorHint="#B3B3B3"
+                            android:popupBackground="#1E1E1E"
+                            android:paddingTop="14dp"
+                            android:paddingBottom="14dp"/>
+                    </com.google.android.material.textfield.TextInputLayout>
+
+                    <!-- Filter chips -->
+                    <com.google.android.material.chip.ChipGroup
+                        android:id="@+id/chipGroup"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="12dp"
+                        app:singleSelection="true"
+                        app:selectionRequired="true">
+
+                        <com.google.android.material.chip.Chip
+                            android:id="@+id/chipAll"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="All"
+                            android:textColor="#FFFFFF"
+                            app:chipBackgroundColor="#2A2A2A"
+                            app:chipCornerRadius="999dp"
+                            app:checkedIconVisible="false"/>
+
+                        <com.google.android.material.chip.Chip
+                            android:id="@+id/chipUnchecked"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="To buy"
+                            android:textColor="#FFFFFF"
+                            app:chipBackgroundColor="#2A2A2A"
+                            app:chipCornerRadius="999dp"
+                            app:checkedIconVisible="false"
+                            android:layout_marginStart="8dp"/>
+
+                        <com.google.android.material.chip.Chip
+                            android:id="@+id/chipChecked"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="In cart"
+                            android:textColor="#FFFFFF"
+                            app:chipBackgroundColor="#2A2A2A"
+                            app:chipCornerRadius="999dp"
+                            app:checkedIconVisible="false"
+                            android:layout_marginStart="8dp"/>
+                    </com.google.android.material.chip.ChipGroup>
+
+                </LinearLayout>
+            </com.google.android.material.card.MaterialCardView>
+
+            <!-- Categories list -->
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/recyclerCategories"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="14dp"
+                android:nestedScrollingEnabled="false"
+                android:clipToPadding="false"/>
+
+            <LinearLayout
+                android:id="@+id/emptyState"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="14dp"
+                android:gravity="center"
+                android:orientation="vertical"
+                android:padding="18dp"
+                android:visibility="gone">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="No results. Try a different search or filter."
+                    android:textColor="#B3B3B3"
+                    android:textSize="13sp"/>
+            </LinearLayout>
+
+            <!-- Clear -->
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/btnClearAll"
+                android:layout_width="match_parent"
+                android:layout_height="54dp"
+                android:layout_marginTop="16dp"
+                android:text="Reset checklist"
+                android:textAllCaps="false"
+                android:textColor="#FFFFFF"
+                app:backgroundTint="#1E1E1E"
+                app:cornerRadius="999dp"
+                app:strokeColor="#2A2A2A"
+                app:strokeWidth="1dp"
+                app:rippleColor="#33FFFFFF"/>
+
+        </LinearLayout>
+    </androidx.core.widget.NestedScrollView>
+
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/fabAdd"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom|end"
+        android:layout_margin="18dp"
+        android:contentDescription="Add item"
+        app:backgroundTint="#1DB954"
+        app:elevation="14dp"
+        app:srcCompat="@drawable/ic_add_24"
+        app:tint="#121212" />
+
+</androidx.coordinatorlayout.widget.CoordinatorLayout>

@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources xmlns:tools="http://schemas.android.com/tools">
+
+    <!-- =========================================================
+         ZEALTH APP THEME (Material Components / Material2)
+         ========================================================= -->
+    <style name="Theme.Zealth" parent="Theme.MaterialComponents.DayNight.NoActionBar">
+
+        <!-- Brand -->
+        <item name="colorPrimary">@color/zealth_primary</item>
+        <item name="colorPrimaryVariant">@color/zealth_primary_variant</item>
+        <item name="colorOnPrimary">@color/zealth_on_primary</item>
+
+        <item name="colorSecondary">@color/zealth_secondary</item>
+        <item name="colorSecondaryVariant">@color/zealth_secondary_variant</item>
+        <item name="colorOnSecondary">@color/zealth_on_secondary</item>
+
+        <!-- Background -->
+        <item name="android:windowBackground">@color/zealth_background</item>
+        <item name="android:colorBackground">@color/zealth_background</item>
+
+        <!-- Surfaces -->
+        <item name="colorSurface">@color/zealth_surface</item>
+        <item name="colorOnSurface">@color/zealth_on_surface</item>
+
+        <!-- Error -->
+        <item name="colorError">@color/zealth_error</item>
+
+        <!-- System bars (edge-to-edge friendly) -->
+        <item name="android:statusBarColor" tools:targetApi="21">@android:color/transparent</item>
+        <item name="android:navigationBarColor" tools:targetApi="21">@android:color/transparent</item>
+
+        <!-- Ripple -->
+        <item name="colorControlHighlight">@color/zealth_primary_22</item>
+
+        <!-- Material AlertDialog overlay -->
+        <item name="materialAlertDialogTheme">@style/ThemeOverlay.Zealth.MaterialAlertDialog</item>
+
+        <!-- Default TextInput style -->
+        <item name="textInputStyle">@style/Widget.Zealth.TextField</item>
+
+        <!-- Optional defaults (enable if you want app-wide defaults) -->
+        <!-- <item name="materialButtonStyle">@style/Widget.Zealth.Button.Primary</item> -->
+        <!-- <item name="materialCardViewStyle">@style/Widget.Zealth.GlassCard</item> -->
+
+        <item name="android:textAllCaps">false</item>
+    </style>
+
+    <!-- =========================================================
+         SPLASH THEME (for your SplashActivity layout with ImageView BG)
+         ========================================================= -->
+    <style name="Theme.Zealth.Splash" parent="Theme.Zealth">
+        <item name="windowActionBar">false</item>
+        <item name="windowNoTitle">true</item>
+
+        <!-- Your SplashActivity draws the image background; keep window solid -->
+        <item name="android:windowBackground">@android:color/black</item>
+        <item name="android:windowIsTranslucent">false</item>
+    </style>
+    <style name="ThemeOverlay.Zealth.MaterialDatePicker"
+        parent="ThemeOverlay.MaterialComponents.MaterialCalendar">
+
+        <!-- Your accent -->
+        <item name="colorPrimary">#6D28D9</item>
+        <item name="colorOnPrimary">#FFFFFF</item>
+
+        <!-- Dialog surface and text -->
+        <item name="colorSurface">#FFFFFF</item>
+        <item name="colorOnSurface">#24113D</item>
+
+        <!-- Secondary text/icons -->
+        <item name="colorOnSurfaceVariant">#3B2A54</item>
+    </style>
+
+
+</resources>

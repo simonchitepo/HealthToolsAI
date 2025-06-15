@@ -1,0 +1,403 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/root"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:fitsSystemWindows="true">
+
+    <!-- BACKGROUND IMAGE -->
+    <ImageView
+        android:id="@+id/bgImage"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:src="@drawable/bodymap_bg"
+        android:scaleType="centerCrop"
+        android:contentDescription="@null" />
+
+    <!-- SCRIM -->
+    <View
+        android:id="@+id/scrim"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="#66000000" />
+
+    <androidx.coordinatorlayout.widget.CoordinatorLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@android:color/transparent">
+
+        <!-- TOOLBAR -->
+        <com.google.android.material.appbar.MaterialToolbar
+            android:id="@+id/toolbar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@android:color/transparent"
+            app:title="Body Map"
+            app:subtitle="Track symptoms by area"
+            app:titleTextColor="@android:color/white"
+            app:subtitleTextColor="#CCFFFFFF"
+            app:navigationIcon="@android:drawable/ic_media_previous"
+            app:navigationIconTint="@android:color/white"/>
+
+        <androidx.core.widget.NestedScrollView
+            android:id="@+id/scroll"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginTop="?attr/actionBarSize"
+            android:fillViewport="true"
+            android:padding="16dp">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <!-- BLURRED TABS -->
+                <eightbitlab.com.blurview.BlurView
+                    android:id="@+id/blurTabs"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/glass_rounded"
+                    android:padding="10dp">
+
+                    <com.google.android.material.tabs.TabLayout
+                        android:id="@+id/tabLayout"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:background="@android:color/transparent"
+                        app:tabIndicatorColor="@color/zealth_primary"
+                        app:tabIndicatorFullWidth="false"
+                        app:tabSelectedTextColor="@android:color/white"
+                        app:tabTextColor="#B3FFFFFF"
+                        app:tabRippleColor="@android:color/transparent"/>
+                </eightbitlab.com.blurview.BlurView>
+
+                <!-- BODY MAP CARD -->
+                <com.google.android.material.card.MaterialCardView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="12dp"
+                    android:background="@drawable/glass_rounded"
+                    app:cardCornerRadius="18dp"
+                    app:cardElevation="0dp">
+
+                    <FrameLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="420dp"
+                        android:padding="12dp">
+
+                        <!-- FRONT -->
+                        <androidx.constraintlayout.widget.ConstraintLayout
+                            android:id="@+id/frontContainer"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:visibility="visible">
+
+                            <ImageView
+                                android:id="@+id/imgFront"
+                                android:layout_width="0dp"
+                                android:layout_height="0dp"
+                                android:src="@drawable/ic_body_placeholder"
+                                android:alpha="0.9"
+                                android:scaleType="fitCenter"
+                                android:contentDescription="@null"
+                                app:layout_constraintTop_toTopOf="parent"
+                                app:layout_constraintBottom_toBottomOf="parent"
+                                app:layout_constraintStart_toStartOf="parent"
+                                app:layout_constraintEnd_toEndOf="parent"/>
+
+                            <View
+                                android:id="@+id/regionHeadFront"
+                                android:layout_width="90dp"
+                                android:layout_height="90dp"
+                                android:background="@android:color/transparent"
+                                app:layout_constraintTop_toTopOf="parent"
+                                app:layout_constraintStart_toStartOf="parent"
+                                app:layout_constraintEnd_toEndOf="parent"/>
+
+                            <View
+                                android:id="@+id/regionChestFront"
+                                android:layout_width="160dp"
+                                android:layout_height="110dp"
+                                android:background="@android:color/transparent"
+                                android:layout_marginTop="120dp"
+                                app:layout_constraintTop_toTopOf="parent"
+                                app:layout_constraintStart_toStartOf="parent"
+                                app:layout_constraintEnd_toEndOf="parent"/>
+
+                            <View
+                                android:id="@+id/regionAbdomenFront"
+                                android:layout_width="160dp"
+                                android:layout_height="110dp"
+                                android:background="@android:color/transparent"
+                                android:layout_marginTop="230dp"
+                                app:layout_constraintTop_toTopOf="parent"
+                                app:layout_constraintStart_toStartOf="parent"
+                                app:layout_constraintEnd_toEndOf="parent"/>
+
+                            <View
+                                android:id="@+id/regionBackFront"
+                                android:layout_width="170dp"
+                                android:layout_height="120dp"
+                                android:background="@android:color/transparent"
+                                android:layout_marginTop="150dp"
+                                app:layout_constraintTop_toTopOf="parent"
+                                app:layout_constraintStart_toStartOf="parent"
+                                app:layout_constraintEnd_toEndOf="parent"/>
+
+                            <View
+                                android:id="@+id/regionArmsFront"
+                                android:layout_width="match_parent"
+                                android:layout_height="140dp"
+                                android:background="@android:color/transparent"
+                                android:layout_marginTop="150dp"
+                                app:layout_constraintTop_toTopOf="parent"
+                                app:layout_constraintStart_toStartOf="parent"
+                                app:layout_constraintEnd_toEndOf="parent"/>
+
+                            <View
+                                android:id="@+id/regionLegsFront"
+                                android:layout_width="180dp"
+                                android:layout_height="150dp"
+                                android:background="@android:color/transparent"
+                                android:layout_marginBottom="20dp"
+                                app:layout_constraintBottom_toBottomOf="parent"
+                                app:layout_constraintStart_toStartOf="parent"
+                                app:layout_constraintEnd_toEndOf="parent"/>
+                        </androidx.constraintlayout.widget.ConstraintLayout>
+
+                        <!-- BACK -->
+                        <androidx.constraintlayout.widget.ConstraintLayout
+                            android:id="@+id/backContainer"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:visibility="gone">
+
+                            <ImageView
+                                android:id="@+id/imgBack"
+                                android:layout_width="0dp"
+                                android:layout_height="0dp"
+                                android:src="@drawable/ic_body_placeholder"
+                                android:alpha="0.9"
+                                android:scaleType="fitCenter"
+                                android:contentDescription="@null"
+                                app:layout_constraintTop_toTopOf="parent"
+                                app:layout_constraintBottom_toBottomOf="parent"
+                                app:layout_constraintStart_toStartOf="parent"
+                                app:layout_constraintEnd_toEndOf="parent"/>
+
+                            <View
+                                android:id="@+id/regionHeadBack"
+                                android:layout_width="90dp"
+                                android:layout_height="90dp"
+                                android:background="@android:color/transparent"
+                                app:layout_constraintTop_toTopOf="parent"
+                                app:layout_constraintStart_toStartOf="parent"
+                                app:layout_constraintEnd_toEndOf="parent"/>
+
+                            <View
+                                android:id="@+id/regionBackBack"
+                                android:layout_width="170dp"
+                                android:layout_height="220dp"
+                                android:background="@android:color/transparent"
+                                android:layout_marginTop="130dp"
+                                app:layout_constraintTop_toTopOf="parent"
+                                app:layout_constraintStart_toStartOf="parent"
+                                app:layout_constraintEnd_toEndOf="parent"/>
+
+                            <View
+                                android:id="@+id/regionArmsBack"
+                                android:layout_width="match_parent"
+                                android:layout_height="140dp"
+                                android:background="@android:color/transparent"
+                                android:layout_marginTop="150dp"
+                                app:layout_constraintTop_toTopOf="parent"
+                                app:layout_constraintStart_toStartOf="parent"
+                                app:layout_constraintEnd_toEndOf="parent"/>
+
+                            <View
+                                android:id="@+id/regionLegsBack"
+                                android:layout_width="180dp"
+                                android:layout_height="150dp"
+                                android:background="@android:color/transparent"
+                                android:layout_marginBottom="20dp"
+                                app:layout_constraintBottom_toBottomOf="parent"
+                                app:layout_constraintStart_toStartOf="parent"
+                                app:layout_constraintEnd_toEndOf="parent"/>
+                        </androidx.constraintlayout.widget.ConstraintLayout>
+
+                    </FrameLayout>
+                </com.google.android.material.card.MaterialCardView>
+
+                <!-- NEW ENTRY CARD -->
+                <com.google.android.material.card.MaterialCardView
+                    android:id="@+id/cardNewEntry"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="12dp"
+                    android:background="@drawable/glass_rounded"
+                    app:cardCornerRadius="18dp"
+                    app:cardElevation="0dp">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:padding="14dp"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="New symptom entry"
+                            android:textStyle="bold"
+                            android:textColor="@android:color/white"
+                            android:textSize="15sp"/>
+
+                        <com.google.android.material.chip.ChipGroup
+                            android:id="@+id/chipGroupAreas"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="10dp"
+                            app:singleSelection="true"
+                            app:selectionRequired="false"
+                            app:chipSpacingHorizontal="8dp"
+                            app:chipSpacingVertical="8dp"/>
+
+                        <com.google.android.material.textfield.TextInputLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="10dp"
+                            android:hint="Body area"
+                            app:boxBackgroundMode="outline"
+                            app:boxCornerRadiusTopStart="16dp"
+                            app:boxCornerRadiusTopEnd="16dp"
+                            app:boxCornerRadiusBottomStart="16dp"
+                            app:boxCornerRadiusBottomEnd="16dp"
+                            app:boxStrokeColor="#66FFFFFF"
+                            app:hintTextColor="#CCFFFFFF">
+
+                            <com.google.android.material.textfield.MaterialAutoCompleteTextView
+                                android:id="@+id/spArea"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:inputType="none"
+                                android:textColor="@android:color/white"/>
+                        </com.google.android.material.textfield.TextInputLayout>
+
+                        <TextView
+                            android:id="@+id/tvSeverity"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="10dp"
+                            android:text="Severity: 3 / 5"
+                            android:textColor="#D9FFFFFF"
+                            android:textSize="13sp"/>
+
+                        <SeekBar
+                            android:id="@+id/seekSeverity"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:max="4"
+                            android:progress="2"
+                            android:layout_marginTop="6dp"/>
+
+                        <eightbitlab.com.blurview.BlurView
+                            android:id="@+id/blurActions"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="12dp"
+                            android:background="@drawable/glass_rounded"
+                            android:padding="10dp">
+
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:orientation="vertical">
+
+                                <com.google.android.material.button.MaterialButton
+                                    android:id="@+id/btnPickStartDate"
+                                    style="@style/Widget.Zealth.GlassButton"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="52dp"
+                                    android:text="Started: Today"/>
+
+                                <com.google.android.material.textfield.TextInputLayout
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginTop="10dp"
+                                    android:hint="Describe symptoms"
+                                    app:boxBackgroundMode="outline"
+                                    app:boxCornerRadiusTopStart="16dp"
+                                    app:boxCornerRadiusTopEnd="16dp"
+                                    app:boxCornerRadiusBottomStart="16dp"
+                                    app:boxCornerRadiusBottomEnd="16dp"
+                                    app:boxStrokeColor="#66FFFFFF"
+                                    app:hintTextColor="#CCFFFFFF">
+
+                                    <com.google.android.material.textfield.TextInputEditText
+                                        android:id="@+id/etNote"
+                                        android:layout_width="match_parent"
+                                        android:layout_height="wrap_content"
+                                        android:minLines="3"
+                                        android:gravity="top"
+                                        android:inputType="textMultiLine"
+                                        android:textColor="@android:color/white"/>
+                                </com.google.android.material.textfield.TextInputLayout>
+
+                                <com.google.android.material.button.MaterialButton
+                                    android:id="@+id/btnSaveEntry"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="56dp"
+                                    android:layout_marginTop="12dp"
+                                    android:text="Save entry"
+                                    android:textAllCaps="false"
+                                    android:textStyle="bold"
+                                    android:backgroundTint="@color/zealth_primary"
+                                    android:textColor="@color/zealth_on_primary"
+                                    app:cornerRadius="16dp"/>
+                            </LinearLayout>
+                        </eightbitlab.com.blurview.BlurView>
+
+                    </LinearLayout>
+                </com.google.android.material.card.MaterialCardView>
+
+                <!-- HISTORY SECTION (ID REQUIRED BY JAVA) -->
+                <LinearLayout
+                    android:id="@+id/historySection"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="16dp"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="History"
+                        android:textStyle="bold"
+                        android:textSize="13sp"
+                        android:textColor="#D9FFFFFF"/>
+
+                    <androidx.recyclerview.widget.RecyclerView
+                        android:id="@+id/recyclerHistory"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="8dp"
+                        android:nestedScrollingEnabled="false"
+                        android:clipToPadding="false"/>
+
+                    <com.google.android.material.button.MaterialButton
+                        android:id="@+id/btnClearAll"
+                        style="@style/Widget.Zealth.GlassButton"
+                        android:layout_width="match_parent"
+                        android:layout_height="52dp"
+                        android:layout_marginTop="12dp"
+                        android:text="Clear all entries"/>
+                </LinearLayout>
+
+            </LinearLayout>
+        </androidx.core.widget.NestedScrollView>
+
+    </androidx.coordinatorlayout.widget.CoordinatorLayout>
+</FrameLayout>

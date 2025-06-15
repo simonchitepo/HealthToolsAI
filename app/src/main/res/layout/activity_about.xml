@@ -1,0 +1,267 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/root"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:fitsSystemWindows="true"
+    android:background="@android:color/transparent">
+
+    <!-- Optional subtle background (keeps it nice even without your video/bg) -->
+    <View
+        android:id="@+id/bgScrim"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:background="#0F000000"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"/>
+
+    <com.google.android.material.appbar.MaterialToolbar
+        android:id="@+id/toolbar"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:background="@android:color/transparent"
+        app:title="About Zealth"
+        app:titleTextColor="@android:color/white"
+        app:navigationIcon="@drawable/ic_back_medical"
+        app:navigationIconTint="@android:color/white"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:elevation="0dp"/>
+
+    <ScrollView
+        android:id="@+id/scroll"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:paddingStart="16dp"
+        android:paddingEnd="16dp"
+        android:paddingTop="12dp"
+        android:paddingBottom="20dp"
+        android:fillViewport="true"
+        android:overScrollMode="never"
+        app:layout_constraintTop_toBottomOf="@id/toolbar"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent">
+
+        <LinearLayout
+            android:id="@+id/content"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <!-- =========================
+                 HEADER "GLASS" CARD
+                 ========================= -->
+            <com.google.android.material.card.MaterialCardView
+                android:id="@+id/cardHeader"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="6dp"
+                app:cardCornerRadius="18dp"
+                app:cardElevation="8dp"
+                app:cardBackgroundColor="#CCFFFFFF"
+                app:strokeWidth="1dp"
+                app:strokeColor="#22000000">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:padding="16dp"
+                    android:gravity="center_vertical">
+
+                    <!-- App icon (use your launcher icon) -->
+                    <com.google.android.material.imageview.ShapeableImageView
+                        android:layout_width="54dp"
+                        android:layout_height="54dp"
+                        android:src="@mipmap/ic_launcher"
+                        android:scaleType="centerCrop"
+                        app:shapeAppearance="@style/ShapeAppearance.MaterialComponents.SmallComponent"/>
+
+
+
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="12dp"
+                        android:layout_weight="1"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:id="@+id/tvAppName"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text=" Health Tools AI: Doctor and Map"
+                            android:textSize="15sp"
+                            android:textStyle="bold"
+                            android:textColor="#111111"/>
+
+                        <TextView
+                            android:id="@+id/tvVersion"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="Version 1.0"
+                            android:textSize="13sp"
+                            android:textColor="#6B6B6B"
+                            android:layout_marginTop="2dp"/>
+                    </LinearLayout>
+
+                    <!-- Small accent dot (brand polish) -->
+                    <View
+                        android:layout_width="10dp"
+                        android:layout_height="10dp"
+                        android:background="@drawable/about_accent_dot"/>
+                </LinearLayout>
+            </com.google.android.material.card.MaterialCardView>
+
+            <!-- =========================
+                 DESCRIPTION CARD
+                 ========================= -->
+            <com.google.android.material.card.MaterialCardView
+                android:id="@+id/cardAbout"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="12dp"
+                app:cardCornerRadius="18dp"
+                app:cardElevation="8dp"
+                app:cardBackgroundColor="#CCFFFFFF"
+                app:strokeWidth="1dp"
+                app:strokeColor="#22000000">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:padding="16dp">
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="What is  Health Tools AI: Doctor and Map?"
+                        android:textStyle="bold"
+                        android:textSize="16sp"
+                        android:textColor="#111111"/>
+
+                    <TextView
+                        android:id="@+id/tvDescription"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="8dp"
+                        android:text=" Health Tools AI: Doctor and Map is a comprehensive health companion designed to support informed wellness decisions across everyday health, women’s health, and lifestyle tools."
+                        android:textSize="10sp"
+                        android:textColor="#202124"
+                        android:lineSpacingExtra="3dp"/>
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="12dp"
+                        android:text="Highlights"
+                        android:textStyle="bold"
+                        android:textSize="15sp"
+                        android:textColor="#111111"/>
+
+                    <TextView
+                        android:id="@+id/tvHighlights"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="6dp"
+                        android:text="• AI Doctor symptom guidance\n• BMI and lifestyle tracking\n• Women’s health and pregnancy tools\n• Interactive map insights and nearby services"
+                        android:textSize="10sp"
+                        android:textColor="#202124"
+                        android:lineSpacingExtra="3dp"/>
+                </LinearLayout>
+            </com.google.android.material.card.MaterialCardView>
+
+            <!-- =========================
+                 DISCLAIMER CARD
+                 ========================= -->
+            <com.google.android.material.card.MaterialCardView
+                android:id="@+id/cardDisclaimer"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="12dp"
+                app:cardCornerRadius="18dp"
+                app:cardElevation="8dp"
+                app:cardBackgroundColor="#CCFFFFFF"
+                app:strokeWidth="1dp"
+                app:strokeColor="#22000000">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:padding="16dp">
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="Medical disclaimer"
+                        android:textStyle="bold"
+                        android:textSize="16sp"
+                        android:textColor="#111111"/>
+
+                    <TextView
+                        android:id="@+id/tvDisclaimer"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="8dp"
+                        android:text=" Health Tools AI: Doctor and Map provides informational guidance only and does not replace professional medical advice, diagnosis, or treatment. Always consult a qualified healthcare provider."
+                        android:textSize="10sp"
+                        android:textColor="#202124"
+                        android:lineSpacingExtra="3dp"/>
+                </LinearLayout>
+            </com.google.android.material.card.MaterialCardView>
+
+            <!-- =========================
+                 ACTION BUTTONS
+                 ========================= -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:layout_marginTop="14dp"
+                android:layout_marginBottom="6dp">
+
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/btnPrivacy"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Privacy Policy"
+                    app:cornerRadius="16dp"
+                    style="@style/Widget.Material3.Button.OutlinedButton"
+                    app:strokeWidth="1dp"
+                    app:strokeColor="#33000000"/>
+
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/btnLicenses"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:text="Open-source Licenses"
+                    app:cornerRadius="16dp"
+                    style="@style/Widget.Material3.Button.OutlinedButton"
+                    app:strokeWidth="1dp"
+                    app:strokeColor="#33000000"/>
+
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/btnContact"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:text="Contact Support"
+                    app:cornerRadius="16dp"
+                    style="@style/Widget.Material3.Button.OutlinedButton"
+                    app:strokeWidth="1dp"
+                    app:strokeColor="#33000000"/>
+            </LinearLayout>
+
+        </LinearLayout>
+    </ScrollView>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

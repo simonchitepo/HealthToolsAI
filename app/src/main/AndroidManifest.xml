@@ -1,0 +1,181 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    package="com.cypher.zealth">
+
+
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
+    <uses-permission android:name="android.permission.CALL_PHONE" />
+
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.POST_NOTIFICATIONS" />
+
+    <!-- Location (maps + nearby facilities) -->
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
+
+    <!-- Notifications (Android 13+) -->
+    <uses-permission android:name="android.permission.POST_NOTIFICATIONS" />
+
+    <!-- Recommended for reliable exact reminders on Android 12+ -->
+    <uses-permission android:name="android.permission.SCHEDULE_EXACT_ALARM" />
+
+    <!-- Recommended if you want reminders to re-schedule after reboot -->
+    <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED" />
+
+    <!-- Legacy storage only (Android 9 and below) -->
+    <uses-permission
+        android:name="android.permission.WRITE_EXTERNAL_STORAGE"
+        android:maxSdkVersion="28" />
+
+    <application
+        android:allowBackup="true"
+        android:dataExtractionRules="@xml/data_extraction_rules"
+        android:fullBackupContent="@xml/backup_rules"
+        android:icon="@mipmap/ic_launcher"
+        android:roundIcon="@mipmap/ic_launcher_round"
+        android:label="@string/app_name"
+        android:supportsRtl="true"
+        android:usesCleartextTraffic="true"
+        android:largeHeap="true"
+        android:theme="@style/Theme.Zealth"
+        tools:targetApi="33">
+
+    
+        <activity
+            android:name=".SplashActivity"
+            android:exported="true"
+            android:theme="@style/Theme.Zealth.Splash">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+
+        <!-- ===================== -->
+        <!-- Launcher / Dashboard -->
+        <!-- ===================== -->
+        <activity
+            android:name=".MainActivity"
+            android:exported="false"
+            android:theme="@style/Theme.Zealth" />
+
+        <!-- ===================== -->
+        <!-- Map & Facilities -->
+        <!-- ===================== -->
+        <activity
+            android:name=".MapActivity"
+            android:exported="false"
+            android:screenOrientation="portrait"
+            android:configChanges="orientation|screenSize|layoutDirection" />
+
+        <activity
+            android:name=".HealthFacilitiesActivity"
+            android:exported="false"
+            android:screenOrientation="portrait"
+            android:label="@string/app_name" />
+
+        <!-- ===================== -->
+        <!-- Health Tools -->
+        <!-- ===================== -->
+        <activity
+            android:name=".BmiCalculatorActivity"
+            android:exported="false"
+            android:screenOrientation="portrait" />
+
+        <activity
+            android:name=".WaterIntakeActivity"
+            android:exported="false"
+            android:screenOrientation="portrait" />
+
+        <!-- AlarmManager -> Receiver for water reminders -->
+        <receiver
+            android:name=".WaterIntakeActivity$WaterReminderReceiver"
+            android:exported="false" />
+
+        <!-- Re-schedule alarms after reboot (now implemented in the Java below) -->
+        <receiver
+            android:name=".WaterIntakeActivity$BootReceiver"
+            android:exported="false">
+            <intent-filter>
+                <action android:name="android.intent.action.BOOT_COMPLETED" />
+            </intent-filter>
+        </receiver>
+
+        <activity
+            android:name=".AiDoctorActivity"
+            android:exported="false"
+            android:theme="@style/Theme.MaterialComponents.DayNight.NoActionBar" />
+
+        <!-- ===================== -->
+        <!-- Mental Wellbeing -->
+        <!-- ===================== -->
+        <activity
+            android:name=".MentalHealthActivity"
+            android:exported="false"
+            android:screenOrientation="portrait" />
+
+        <!-- ===================== -->
+        <!-- Womenâ€™s Health -->
+        <!-- ===================== -->
+        <activity
+            android:name=".WomensHealthActivity"
+            android:exported="false"
+            android:screenOrientation="portrait" />
+
+        <activity
+            android:name=".PregnancyTrackerActivity"
+            android:exported="false"
+            android:screenOrientation="portrait" />
+
+        <!-- ===================== -->
+        <!-- Lifestyle & Utilities -->
+        <!-- ===================== -->
+        <activity
+            android:name=".WeightGoalsActivity"
+            android:exported="false"
+            android:screenOrientation="portrait" />
+
+        <activity
+            android:name=".SmokingCessationActivity"
+            android:exported="false"
+            android:screenOrientation="portrait" />
+
+        <activity
+            android:name=".HealthyGroceriesActivity"
+            android:exported="false"
+            android:screenOrientation="portrait" />
+
+        <activity
+            android:name=".AboutActivity"
+            android:exported="false" />
+
+        <activity
+            android:name=".LicensesActivity"
+            android:exported="false" />
+        <receiver
+            android:name=".MentalHealthActivity$MoodReminderReceiver"
+            android:exported="false" />
+        <receiver
+            android:name=".WomensNotificationReceiver"
+            android:exported="false" />
+        <receiver android:name=".PregnancyTrackerActivity$PregnancyReminderReceiver"
+            android:exported="false" />
+        <receiver
+            android:name=".WeightGoalsActivity$ReminderReceiver"
+            android:exported="false" />
+
+        <receiver
+            android:name=".SmokingCessationActivity$ReminderReceiver"
+            android:exported="false" />
+        <receiver
+            android:name=".MoodReminderReceiver"
+            android:exported="false" />
+
+
+    </application>
+
+</manifest>
+

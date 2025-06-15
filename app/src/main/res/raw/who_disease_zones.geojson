@@ -1,0 +1,27 @@
+{
+  "type": "FeatureCollection",
+  "features": [
+    {
+      "type": "Feature",
+      "properties": {
+        "disease": "Malaria",
+        "risk": "High"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [36.8200, -1.2950]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "disease": "Cholera",
+        "risk": "Medium"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [36.8300, -1.2850]
+      }
+    }
+  ]
+}

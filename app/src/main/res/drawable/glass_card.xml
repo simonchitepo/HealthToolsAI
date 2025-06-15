@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<shape xmlns:android="http://schemas.android.com/apk/res/android">
+    <solid android:color="@color/zealth_surface2"/>
+    <stroke
+        android:width="@dimen/zealth_stroke"
+        android:color="@color/zealth_line"/>
+    <corners android:radius="@dimen/zealth_radius2"/>
+</shape>

@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <dimen name="zealth_radius">22dp</dimen>
+    <dimen name="zealth_radius2">28dp</dimen>
+
+    <dimen name="zealth_stroke">1dp</dimen>
+
+    <dimen name="zealth_pad_card">14dp</dimen>
+    <dimen name="zealth_pad_inset">12dp</dimen>
+
+    <dimen name="zealth_btn_height">56dp</dimen>
+    <dimen name="zealth_pill_height">44dp</dimen>
+</resources>

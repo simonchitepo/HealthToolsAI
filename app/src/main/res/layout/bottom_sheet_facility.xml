@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.google.android.material.card.MaterialCardView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_margin="12dp"
+    app:cardCornerRadius="24dp"
+    app:cardElevation="12dp"
+    app:strokeWidth="1dp"
+    app:strokeColor="#E6EAF2"
+    app:cardBackgroundColor="#FFFFFF">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="18dp">
+
+        <TextView
+            android:id="@+id/facilityName"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="City General Hospital"
+            android:textColor="#0B1F3A"
+            android:textSize="20sp"
+            android:textStyle="bold"/>
+
+        <TextView
+            android:id="@+id/facilityType"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="6dp"
+            android:text="Public Tertiary Hospital"
+            android:textColor="#2E7D32"
+            android:textSize="13sp"
+            android:textStyle="bold"/>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_marginTop="14dp"
+            android:layout_marginBottom="14dp"
+            android:background="#E6EAF2"/>
+
+        <TextView
+            android:id="@+id/facilityServices"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Emergency • Maternity • 1.2 km away"
+            android:textColor="#5E6A7A"
+            android:textSize="14sp"
+            android:lineSpacingExtra="2dp"/>
+
+    </LinearLayout>
+</com.google.android.material.card.MaterialCardView>
